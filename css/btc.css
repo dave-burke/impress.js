@@ -179,7 +179,22 @@ a:focus {
     transition:         opacity 1s;
 }
 
-.impress-enabled .step.active { opacity: 1 }
+.impress-enabled .step.active,
+.impress-enabled .step.tx.past { opacity: 1 }
+
+.step.block {
+	border: 1px solid;
+	background: rgb(115, 115, 115);
+	width: 475px;
+	height: 600px;
+	opacity: 0.3;
+}
+.step.block.active {
+	opacity: 0.3;
+}
+.step.block.future {
+	display: none;
+}
 
 /*
     And as the last thing there is a workaround for quite strange bug.
