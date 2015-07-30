@@ -188,16 +188,19 @@ a:focus {
 	height: 600px;
 }
 
+/* Block outlines should appear as we step through them */
 .impress-enabled .step.block.future {
 	display: none;
 }
 
+/* Position the block headers above the outline */
 .step.block h3 {
 	position: absolute;
 	top: -80px;
 	text-align: center;
 }
 
+/* Don't show the network graph until after we're done talking about blocks */
 .step.future img.network {
 	display: none;
 }
@@ -211,7 +214,8 @@ a:focus {
 	padding: 5px;
 }
 
-.step table.network img.highlight {
+/* Highlight a node on slide transition */
+.step.past table.network img.highlight {
 	box-shadow: 0 0 30px rgba(255, 0, 0, 1);
 }
 
