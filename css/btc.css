@@ -168,7 +168,7 @@ a:focus {
 
     Basically we remove the margin and make inactive steps a little bit transparent.
 */
-.impress-enabled .step {
+.impress-enabled .step.fadeout {
     margin: 0;
     opacity: 0.3;
 
@@ -179,21 +179,40 @@ a:focus {
     transition:         opacity 1s;
 }
 
-.impress-enabled .step.active,
-.impress-enabled .step.tx.past { opacity: 1 }
+.impress-enabled .step.fadeout.active { opacity: 1 }
 
 .step.block {
 	border: 1px solid;
-	background: rgb(115, 115, 115);
+	background: rgba(115, 115, 115, 0.3);
 	width: 475px;
 	height: 600px;
-	opacity: 0.3;
 }
-.step.block.active {
-	opacity: 0.3;
-}
-.step.block.future {
+
+.impress-enabled .step.block.future {
 	display: none;
+}
+
+.step.block h3 {
+	position: absolute;
+	top: -80px;
+	text-align: center;
+}
+
+.step.future img.network {
+	display: none;
+}
+
+.step table.network {
+	position: absolute;
+	top: 50px;
+	left: 250px;
+}
+.step table.network td {
+	padding: 5px;
+}
+
+.step table.network img.highlight {
+	box-shadow: 0 0 30px rgba(255, 0, 0, 1);
 }
 
 /*
