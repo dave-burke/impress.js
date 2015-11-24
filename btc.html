@@ -141,6 +141,17 @@
 	</div>
 	<div id="network-solve-4" class="step overview" data-x="4500" data-y="1200" data-scale="4">
 	</div>
+	<div class="step" data-x="0" data-y="2000">
+		<form id="hashForm" action="#">
+			<p>
+				<label for="hashInput">Input: </label>
+				<input type="text"/>
+			</p>
+			<p><input id="hashSubmit" type="submit"/></p>
+		</form>
+		<ul id="hashOutput">
+		</ul>
+	</div>
 
 </div>
 
@@ -215,6 +226,13 @@
 		document.getElementById('node-a1').classList.add('hl-green');
 		document.getElementById('node-b1').classList.add('hl-green');
 		document.getElementById('node-c1').classList.add('hl-green');
+	});
+
+	/* Handle hash input */
+	var hashForm = document.getElementById('hashForm');
+	hashForm.addEventListener('submit', function(e){
+		e.preventDefault();
+		console.log('Submit');
 	});
 
 </script>
