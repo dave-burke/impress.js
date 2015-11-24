@@ -144,10 +144,9 @@
 	<div class="step" data-x="0" data-y="2000">
 		<form id="hashForm" action="#">
 			<p>
-				<label for="hashInput">Input: </label>
-				<input type="text"/>
+				<input id="hashInput" type="text"/>
+				<input id="hashSubmit" type="submit" value="Hash"/>
 			</p>
-			<p><input id="hashSubmit" type="submit"/></p>
 		</form>
 		<ul id="hashOutput">
 		</ul>
@@ -155,6 +154,7 @@
 
 </div>
 
+<script src="js/cryptofoo/cryptofoo.min.js"></script>
 <script src="js/impress.js"></script>
 <script src="js/btc.js"></script>
 <script>
@@ -229,10 +229,24 @@
 	});
 
 	/* Handle hash input */
+	var hashInput = document.getElementById('hashInput');
+	hashInput.addEventListener('keyup', function(e){
+		//Don't change slides when typing in the input
+		e.stopPropagation();
+	});
+
 	var hashForm = document.getElementById('hashForm');
 	hashForm.addEventListener('submit', function(e){
 		e.preventDefault();
-		console.log('Submit');
+		var input = document.getElementById('hashInput').value;
+		var output = cryptofoo.md5(input);
+
+		var list = document.getElementById('hashOutput');
+		var listItem = document.createElement('li');
+		var listItemText = document.createTextNode(output + '(' + input + ')');
+
+		listItem.appendChild(listItemText);
+		list.appendChild(listItem);
 	});
 
 </script>

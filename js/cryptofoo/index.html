@@ -1,0 +1,61 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>cryptofoo</title>
+  <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+  <table>
+    <thead>
+      <tr>
+        <th>input</th>
+        <th><input name="" onkeyup="calcHashes(this.value);" type="text"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Whirlpool</td>
+        <td id="whirlpool"></td>
+      </tr>
+      <tr>
+        <td>md5</td>
+        <td id="md5"></td>
+      </tr>
+      <tr>
+        <td>crc32</td>
+        <td id="crc32"></td>
+      </tr>
+    </tbody>
+  </table>
+  <script src="./cryptofoo.js"></script>
+  <script src="http://simonwaldherr.github.io/majaX.js/majax.js"></script>
+  <script>
+    function calcHashes(str) {
+      majaX({url:'http://cdn.simon.waldherr.eu/projects/cryptofoo/hash.php', method:'GET', type:'json', data:{string:str}}, function(json) {
+        var jswhirlpool = cryptofoo.hash('whirlpool', str);
+        var jsmd5       = cryptofoo.hash('md5', str);
+        var jscrc32     = cryptofoo.hash('crc32', str);
+        
+        if (json.whirlpool === jswhirlpool) {
+          document.getElementById('whirlpool').innerHTML = '<span style="background:green;">'+jswhirlpool+'</span>';
+        } else {
+          document.getElementById('whirlpool').innerHTML = '<span style="background:green;">'+jswhirlpool+'</span>';
+          console.log([json.whirlpool, jswhirlpool]);
+        }
+        if (json.md5 === jsmd5) {
+          document.getElementById('md5').innerHTML = '<span style="background:green;">'+jsmd5+'</span>';
+        } else {
+          document.getElementById('md5').innerHTML = '<span style="background:red;">'+jsmd5+'</span>';
+          console.log([json.md5, jsmd5]);
+        }
+        if (json.crc32 === jscrc32) {
+          document.getElementById('crc32').innerHTML = '<span style="background:green;">'+jscrc32+'</span>';
+        } else {
+          document.getElementById('crc32').innerHTML = '<span style="background:red;">'+jscrc32+'</span>';
+          console.log([json.crc32, jscrc32]);
+        }
+      });
+    }
+  </script>
+</body>
+</html>

@@ -224,6 +224,12 @@ a:focus {
 	box-shadow: 0 0 30px rgba(0, 0, 255, 1);
 }
 
+#hashOutput li {
+	font-family: monospace;
+	font-size: 30px;
+	text-align: left;
+}
+
 /*
     And as the last thing there is a workaround for quite strange bug.
     It happens a lot in Chrome. I don't remember if I've seen it in Firefox.
