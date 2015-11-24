@@ -181,6 +181,14 @@ a:focus {
 
 .impress-enabled .step.fadeout.active { opacity: 1 }
 
+.impress-enabled .step.hide {
+	display: none;
+}
+
+.impress-enabled .step.hide.active {
+	display: block;
+}
+
 .step.block {
 	border: 1px solid;
 	background: rgba(115, 115, 115, 0.3);
@@ -220,7 +228,7 @@ a:focus {
 	box-shadow: 0 0 30px rgba(255, 0, 0, 1);
 }
 
-.step table.network td.hl-green img {
+.step table.network td.hl-blue img {
 	box-shadow: 0 0 30px rgba(0, 0, 255, 1);
 }
 

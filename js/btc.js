@@ -16,7 +16,13 @@ window.BTC = (function ( document, window ) {
 	});
 
 	document.addEventListener("impress:stepleave", function (event, step) {
-		console.log('left', event.target.id);
+		var stepId = event.target.id;
+		console.log('left', stepId);
+		if(stepLeaveCallbacks[stepId]){
+			stepLeaveCallbacks[stepId].forEach(function(callback){
+				callback();
+			});
+		}
 	});
 
 	return {
@@ -27,8 +33,11 @@ window.BTC = (function ( document, window ) {
 			stepEnterCallbacks[stepId].push(callback);
 		},
 		onStepLeave: function(stepId, callback){
-		},
-		
+			if(!stepLeaveCallbacks.hasOwnProperty(stepId)){
+				stepLeaveCallbacks[stepId] = [];
+			}
+			stepLeaveCallbacks[stepId].push(callback);
+		}
 	};
 })(document, window);
 	

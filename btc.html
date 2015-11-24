@@ -141,7 +141,7 @@
 	</div>
 	<div id="network-solve-4" class="step overview" data-x="4500" data-y="1200" data-scale="4">
 	</div>
-	<div class="step" data-x="0" data-y="2000">
+	<div id="hash-demo" class="step hide" data-x="4900" data-y="1300">
 		<form id="hashForm" action="#">
 			<p>
 				<input id="hashInput" type="text"/>
@@ -150,6 +150,8 @@
 		</form>
 		<ul id="hashOutput">
 		</ul>
+	</div>
+	<div id="block-view-prefork" class="step overview" data-x="4500" data-y="1200" data-scale="4">
 	</div>
 
 </div>
@@ -163,69 +165,60 @@
 	BTC.onStepEnter('wheel-overview', function(){
 		api.next();
 	});
+	function colorNodes(color, arrId, removeColor){
+		arrId.forEach(function(id){
+			var el = document.getElementById('node-' + id);
+			el.classList.add('hl-' + color);
+			if(removeColor){
+				el.classList.remove('hl-' + removeColor);
+			}
+		});
+	}
+
 	/* Animate network transaction announcement */
 	BTC.onStepEnter('network-announce-1', function(){
-		document.getElementById('node-b2').classList.add('hl-red');
+		colorNodes('red',['b2']);
 	});
 	BTC.onStepEnter('network-announce-2', function(){
-		document.getElementById('node-a1').classList.add('hl-red');
-		document.getElementById('node-a2').classList.add('hl-red');
-		document.getElementById('node-a3').classList.add('hl-red');
-		document.getElementById('node-b1').classList.add('hl-red');
-		document.getElementById('node-b3').classList.add('hl-red');
-		document.getElementById('node-c1').classList.add('hl-red');
-		document.getElementById('node-c2').classList.add('hl-red');
-		document.getElementById('node-c3').classList.add('hl-red');
+		colorNodes('red', ['a1','a2','a3','b1','b3','c1','c2','c3']);
+		api.next();
 	});
 	BTC.onStepEnter('network-announce-3', function(){
-		document.getElementById('node-a4').classList.add('hl-red');
-		document.getElementById('node-b4').classList.add('hl-red');
-		document.getElementById('node-c4').classList.add('hl-red');
+		colorNodes('red', ['a4','b4','c4']);
+		api.next();
 	});
 	BTC.onStepEnter('network-announce-4', function(){
-		document.getElementById('node-a5').classList.add('hl-red');
-		document.getElementById('node-b5').classList.add('hl-red');
-		document.getElementById('node-c5').classList.add('hl-red');
+		colorNodes('red', ['a5','b5','c5']);
 	});
 
 	/* Animate network solution */
 	BTC.onStepEnter('network-solve-1', function(){
-		document.getElementById('node-a4').classList.remove('hl-red');
-		document.getElementById('node-a4').classList.add('hl-green');
+		colorNodes('blue', ['a4'], 'red');
 	});
 	BTC.onStepEnter('network-solve-2', function(){
-		document.getElementById('node-a3').classList.remove('hl-red');
-		document.getElementById('node-a5').classList.remove('hl-red');
-		document.getElementById('node-b3').classList.remove('hl-red');
-		document.getElementById('node-b4').classList.remove('hl-red');
-		document.getElementById('node-b5').classList.remove('hl-red');
-		document.getElementById('node-a3').classList.add('hl-green');
-		document.getElementById('node-a5').classList.add('hl-green');
-		document.getElementById('node-b3').classList.add('hl-green');
-		document.getElementById('node-b4').classList.add('hl-green');
-		document.getElementById('node-b5').classList.add('hl-green');
+		colorNodes('blue', ['a3','a5','b3','b4','b5'], 'red');
+		api.next();
 	});
 	BTC.onStepEnter('network-solve-3', function(){
-		document.getElementById('node-a2').classList.remove('hl-red');
-		document.getElementById('node-b2').classList.remove('hl-red');
-		document.getElementById('node-c2').classList.remove('hl-red');
-		document.getElementById('node-c3').classList.remove('hl-red');
-		document.getElementById('node-c4').classList.remove('hl-red');
-		document.getElementById('node-c5').classList.remove('hl-red');
-		document.getElementById('node-a2').classList.add('hl-green');
-		document.getElementById('node-b2').classList.add('hl-green');
-		document.getElementById('node-c2').classList.add('hl-green');
-		document.getElementById('node-c3').classList.add('hl-green');
-		document.getElementById('node-c4').classList.add('hl-green');
-		document.getElementById('node-c5').classList.add('hl-green');
+		colorNodes('blue', ['a2', 'b2', 'c2', 'c3', 'c4', 'c5'], 'red');
+		api.next();
 	});
 	BTC.onStepEnter('network-solve-4', function(){
-		document.getElementById('node-a1').classList.remove('hl-red');
-		document.getElementById('node-b1').classList.remove('hl-red');
-		document.getElementById('node-c1').classList.remove('hl-red');
-		document.getElementById('node-a1').classList.add('hl-green');
-		document.getElementById('node-b1').classList.add('hl-green');
-		document.getElementById('node-c1').classList.add('hl-green');
+		colorNodes('blue', ['a1','b1','c1'], 'red');
+	});
+	BTC.onStepEnter('hash-demo', function(){
+		//TODO remove the whole table, and animate the fadeout
+		['a2', 'a3','a4','a5','b2', 'b3','b4','b5'].forEach(function(id){
+			var el = document.getElementById('node-' + id);
+			el.style.display = 'none';
+			el.classList.remove('hl-blue');
+			//TODO replace verbose blocks with simplified block chain
+		});
+	});
+	BTC.onStepEnter('block-view-prefork', function(){
+		['a2', 'a3','a4','a5','b2', 'b3','b4','b5'].forEach(function(id){
+			document.getElementById('node-' + id).style.display = 'table-cell';
+		});
 	});
 
 	/* Handle hash input */
