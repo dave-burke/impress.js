@@ -205,6 +205,7 @@ a:focus {
 	display: none;
 }
 
+/* Put the table below the blocks regardless of the camera position */
 .step table.network {
 	position: absolute;
 	top: 50px;
