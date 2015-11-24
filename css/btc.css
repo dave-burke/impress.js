@@ -201,7 +201,7 @@ a:focus {
 }
 
 /* Don't show the network graph until after we're done talking about blocks */
-.step.future img.network {
+.step.future table.network img {
 	display: none;
 }
 
