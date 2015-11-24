@@ -61,7 +61,7 @@
 		<h3>Banking</h3>
 	</div>
 
-	<div class="step overview" data-x="0" data-y="0" data-scale="3">
+	<div id="wheel-overview" class="step overview" data-x="0" data-y="0" data-scale="3">
 	</div>
 	<div class="step fadeout" data-x="0" data-y="0">
 		<h3>Bitcoin</h3>
@@ -131,8 +131,14 @@
 </div>
 
 <script src="js/impress.js"></script>
-<script>impress().init();</script>
-
+<script src="js/btc.js"></script>
+<script>
+	var api = impress();
+	api.init();
+	BTC.onStepEnter('wheel-overview', function(){
+		api.next();
+	});
+</script>
 
 </body>
 </html>
