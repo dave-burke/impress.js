@@ -216,8 +216,12 @@ a:focus {
 }
 
 /* Highlight a node on slide transition */
-.step.past table.network img.highlight {
+.step table.network td.hl-red img {
 	box-shadow: 0 0 30px rgba(255, 0, 0, 1);
+}
+
+.step table.network td.hl-green img {
+	box-shadow: 0 0 30px rgba(0, 0, 255, 1);
 }
 
 /*

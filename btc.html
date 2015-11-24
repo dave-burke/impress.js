@@ -103,29 +103,43 @@
 	<div class="step" data-x="4500" data-y="1200" data-scale="4">
 		<table class="network">
 			<tr>
-				<td><img alt="X" src="apple-touch-icon.png" /></td>
-				<td><img alt="X" src="apple-touch-icon.png" /></td>
-				<td><img alt="X" src="apple-touch-icon.png" /></td>
-				<td><img alt="X" src="apple-touch-icon.png" /></td>
-				<td><img alt="X" src="apple-touch-icon.png" /></td>
+				<td id="node-a1"><img alt="X" src="apple-touch-icon.png" /></td>
+				<td id="node-a2"><img alt="X" src="apple-touch-icon.png" /></td>
+				<td id="node-a3"><img alt="X" src="apple-touch-icon.png" /></td>
+				<td id="node-a4"><img alt="X" src="apple-touch-icon.png" /></td>
+				<td id="node-a5"><img alt="X" src="apple-touch-icon.png" /></td>
 			</tr>
 			<tr>
-				<td><img alt="X" src="apple-touch-icon.png" /></td>
-				<td><img class="highlight" alt="X" src="apple-touch-icon.png" /></td>
-				<td><img alt="X" src="apple-touch-icon.png" /></td>
-				<td><img alt="X" src="apple-touch-icon.png" /></td>
-				<td><img alt="X" src="apple-touch-icon.png" /></td>
+				<td id="node-b1"><img alt="X" src="apple-touch-icon.png" /></td>
+				<td id="node-b2"><img alt="X" src="apple-touch-icon.png" /></td>
+				<td id="node-b3"><img alt="X" src="apple-touch-icon.png" /></td>
+				<td id="node-b4"><img alt="X" src="apple-touch-icon.png" /></td>
+				<td id="node-b5"><img alt="X" src="apple-touch-icon.png" /></td>
 			</tr>
 			<tr>
-				<td><img alt="X" src="apple-touch-icon.png" /></td>
-				<td><img alt="X" src="apple-touch-icon.png" /></td>
-				<td><img alt="X" src="apple-touch-icon.png" /></td>
-				<td><img alt="X" src="apple-touch-icon.png" /></td>
-				<td><img alt="X" src="apple-touch-icon.png" /></td>
+				<td id="node-c1"><img alt="X" src="apple-touch-icon.png" /></td>
+				<td id="node-c2"><img alt="X" src="apple-touch-icon.png" /></td>
+				<td id="node-c3"><img alt="X" src="apple-touch-icon.png" /></td>
+				<td id="node-c4"><img alt="X" src="apple-touch-icon.png" /></td>
+				<td id="node-c5"><img alt="X" src="apple-touch-icon.png" /></td>
 			</tr>
 		</table>
 	</div>
-	<div class="step overview" data-x="4500" data-y="1200" data-scale="4">
+	<div id="network-announce-1" class="step overview" data-x="4500" data-y="1200" data-scale="4">
+	</div>
+	<div id="network-announce-2" class="step overview" data-x="4500" data-y="1200" data-scale="4">
+	</div>
+	<div id="network-announce-3" class="step overview" data-x="4500" data-y="1200" data-scale="4">
+	</div>
+	<div id="network-announce-4" class="step overview" data-x="4500" data-y="1200" data-scale="4">
+	</div>
+	<div id="network-solve-1" class="step overview" data-x="4500" data-y="1200" data-scale="4">
+	</div>
+	<div id="network-solve-2" class="step overview" data-x="4500" data-y="1200" data-scale="4">
+	</div>
+	<div id="network-solve-3" class="step overview" data-x="4500" data-y="1200" data-scale="4">
+	</div>
+	<div id="network-solve-4" class="step overview" data-x="4500" data-y="1200" data-scale="4">
 	</div>
 
 </div>
@@ -138,6 +152,71 @@
 	BTC.onStepEnter('wheel-overview', function(){
 		api.next();
 	});
+	/* Animate network transaction announcement */
+	BTC.onStepEnter('network-announce-1', function(){
+		document.getElementById('node-b2').classList.add('hl-red');
+	});
+	BTC.onStepEnter('network-announce-2', function(){
+		document.getElementById('node-a1').classList.add('hl-red');
+		document.getElementById('node-a2').classList.add('hl-red');
+		document.getElementById('node-a3').classList.add('hl-red');
+		document.getElementById('node-b1').classList.add('hl-red');
+		document.getElementById('node-b3').classList.add('hl-red');
+		document.getElementById('node-c1').classList.add('hl-red');
+		document.getElementById('node-c2').classList.add('hl-red');
+		document.getElementById('node-c3').classList.add('hl-red');
+	});
+	BTC.onStepEnter('network-announce-3', function(){
+		document.getElementById('node-a4').classList.add('hl-red');
+		document.getElementById('node-b4').classList.add('hl-red');
+		document.getElementById('node-c4').classList.add('hl-red');
+	});
+	BTC.onStepEnter('network-announce-4', function(){
+		document.getElementById('node-a5').classList.add('hl-red');
+		document.getElementById('node-b5').classList.add('hl-red');
+		document.getElementById('node-c5').classList.add('hl-red');
+	});
+
+	/* Animate network solution */
+	BTC.onStepEnter('network-solve-1', function(){
+		document.getElementById('node-a4').classList.remove('hl-red');
+		document.getElementById('node-a4').classList.add('hl-green');
+	});
+	BTC.onStepEnter('network-solve-2', function(){
+		document.getElementById('node-a3').classList.remove('hl-red');
+		document.getElementById('node-a5').classList.remove('hl-red');
+		document.getElementById('node-b3').classList.remove('hl-red');
+		document.getElementById('node-b4').classList.remove('hl-red');
+		document.getElementById('node-b5').classList.remove('hl-red');
+		document.getElementById('node-a3').classList.add('hl-green');
+		document.getElementById('node-a5').classList.add('hl-green');
+		document.getElementById('node-b3').classList.add('hl-green');
+		document.getElementById('node-b4').classList.add('hl-green');
+		document.getElementById('node-b5').classList.add('hl-green');
+	});
+	BTC.onStepEnter('network-solve-3', function(){
+		document.getElementById('node-a2').classList.remove('hl-red');
+		document.getElementById('node-b2').classList.remove('hl-red');
+		document.getElementById('node-c2').classList.remove('hl-red');
+		document.getElementById('node-c3').classList.remove('hl-red');
+		document.getElementById('node-c4').classList.remove('hl-red');
+		document.getElementById('node-c5').classList.remove('hl-red');
+		document.getElementById('node-a2').classList.add('hl-green');
+		document.getElementById('node-b2').classList.add('hl-green');
+		document.getElementById('node-c2').classList.add('hl-green');
+		document.getElementById('node-c3').classList.add('hl-green');
+		document.getElementById('node-c4').classList.add('hl-green');
+		document.getElementById('node-c5').classList.add('hl-green');
+	});
+	BTC.onStepEnter('network-solve-4', function(){
+		document.getElementById('node-a1').classList.remove('hl-red');
+		document.getElementById('node-b1').classList.remove('hl-red');
+		document.getElementById('node-c1').classList.remove('hl-red');
+		document.getElementById('node-a1').classList.add('hl-green');
+		document.getElementById('node-b1').classList.add('hl-green');
+		document.getElementById('node-c1').classList.add('hl-green');
+	});
+
 </script>
 
 </body>
