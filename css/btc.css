@@ -181,12 +181,66 @@ a:focus {
 
 .impress-enabled .step.fadeout.active { opacity: 1 }
 
-.impress-enabled .step.hide {
-	display: none;
+.impress-enabled .hideable {
+    -webkit-transition: opacity 1s;
+    -moz-transition:    opacity 1s;
+    -ms-transition:     opacity 1s;
+    -o-transition:      opacity 1s;
+    transition:         opacity 1s;
 }
 
-.impress-enabled .step.hide.active {
+.impress-enabled .hideable.hidden {
+    opacity: 0.0 !important;
+}
+
+.impress-enabled .step.hideInactive,
+.impress-enabled .step.hideAfter,
+.impress-enabled .step.hideBefore {
+    opacity: 0.0;
+    -webkit-transition: opacity 1s;
+    -moz-transition:    opacity 1s;
+    -ms-transition:     opacity 1s;
+    -o-transition:      opacity 1s;
+    transition:         opacity 1s;
+}
+
+.impress-enabled .step.hideInactive.active,
+.impress-enabled .step.hideBefore.present,
+.impress-enabled .step.hideBefore.past,
+.impress-enabled .step.hideAfter.present,
+.impress-enabled .step.hideAfter.future {
+    opacity: 1.0;
+}
+
+.impress-enabled .step .simple-chain {
+	position: relative;
+	top: -200px;
+}
+
+.impress-enabled .step .block {
+	border: 1px solid;
+	background: rgba(115, 115, 115, 0.3);
+	width: 100px;
+	height: 100px;
+	display: inline-block;
+	margin-right: 30px;
+}
+
+.impress-enabled .step .fork {
+	position: relative;
+	top: 50px;
+	width: 100px;
+	height: 230px;
+	display: inline-block;
+	margin-right: 30px;
+}
+
+.impress-enabled .step .fork .block {
 	display: block;
+}
+
+.impress-enabled .step .fork .block.a {
+	margin-bottom: 30px;
 }
 
 .step.block {

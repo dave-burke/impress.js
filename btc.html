@@ -68,40 +68,42 @@
 		<em>Money without the middleman</em>
 	</div>
 
-	<div class="step" data-x="3000" data-y="0">
-		<p>"I, Alice, give Bob 1 coin."</p>
-	</div>
-	<div class="step" data-x="3000" data-y="1000">
-		<p>"I, Charlie, give Bob 1 coin."</p>
-	</div>
-	<div class="step" data-x="4000" data-y="500">
-		<p>"I, Bob, give Dave the 1 coin I got from Alice."</p>
-		<p>"I, Bob, give Dave the 1 coin I got from Charlie."</p>
-	</div>
-	<div class="step" data-x="5000" data-y="500">
-		<p>"I, Dave, give Emily the 2 coins I got from Bob"</p>
-	</div>
-	<div class="step" data-x="6000" data-y="500">
-		<p>"I, Emily, give Gary 1 of the coins I got from Dave."</p>
-		<p>"I, Emily, give 1 of the coins I got from Dave back to myself as change."</p>
-	</div>
+	<div id="verbose-blockchain" class="hideable">
+		<div class="step" data-x="3000" data-y="0">
+			<p>"I, Alice, give Bob 1 coin."</p>
+		</div>
+		<div class="step" data-x="3000" data-y="1000">
+			<p>"I, Charlie, give Bob 1 coin."</p>
+		</div>
+		<div class="step" data-x="4000" data-y="500">
+			<p>"I, Bob, give Dave the 1 coin I got from Alice."</p>
+			<p>"I, Bob, give Dave the 1 coin I got from Charlie."</p>
+		</div>
+		<div class="step" data-x="5000" data-y="500">
+			<p>"I, Dave, give Emily the 2 coins I got from Bob"</p>
+		</div>
+		<div class="step" data-x="6000" data-y="500">
+			<p>"I, Emily, give Gary 1 of the coins I got from Dave."</p>
+			<p>"I, Emily, give 1 of the coins I got from Dave back to myself as change."</p>
+		</div>
 
-	<div class="step block" data-x="3000" data-y="500" data-scale="2">
-		<h3>Block 1</h3>
-	</div>
-	<div class="step block" data-x="4000" data-y="500" data-scale="2">
-		<h3>Block 2</h3>
-	</div>
-	<div class="step block" data-x="5000" data-y="500" data-scale="2">
-		<h3>Block 3</h3>
-	</div>
-	<div class="step block" data-x="6000" data-y="500" data-scale="2">
-		<h3>Block 4</h3>
+		<div class="step block" data-x="3000" data-y="500" data-scale="2">
+			<h3>Block 1</h3>
+		</div>
+		<div class="step block" data-x="4000" data-y="500" data-scale="2">
+			<h3>Block 2</h3>
+		</div>
+		<div class="step block" data-x="5000" data-y="500" data-scale="2">
+			<h3>Block 3</h3>
+		</div>
+		<div class="step block" data-x="6000" data-y="500" data-scale="2">
+			<h3>Block 4</h3>
+		</div>
 	</div>
 	<div class="step overview" data-x="4500" data-y="500" data-scale="3">
 	</div>
-	<div class="step" data-x="4500" data-y="1200" data-scale="4">
-		<table class="network">
+	<div id="network-overview" class="step hideable" data-x="4500" data-y="1200" data-scale="4">
+		<table id="network-table" class="network">
 			<tr>
 				<td id="node-a1"><img alt="X" src="apple-touch-icon.png" /></td>
 				<td id="node-a2"><img alt="X" src="apple-touch-icon.png" /></td>
@@ -141,7 +143,7 @@
 	</div>
 	<div id="network-solve-4" class="step overview" data-x="4500" data-y="1200" data-scale="4">
 	</div>
-	<div id="hash-demo" class="step hide" data-x="4900" data-y="1300">
+	<div id="hash-demo" class="step hideInactive" data-x="4900" data-y="1300">
 		<form id="hashForm" action="#">
 			<p>
 				<input id="hashInput" type="text"/>
@@ -151,8 +153,21 @@
 		<ul id="hashOutput">
 		</ul>
 	</div>
-	<div id="block-view-prefork" class="step overview" data-x="4500" data-y="1200" data-scale="4">
+	<div id="block-view-prefork" class="step hideBefore" data-x="4500" data-y="1200" data-scale="4">
+		<div class="simple-chain">
+			<div class="block"><h1>1</h1></div>
+			<div class="block"><h1>2</h1></div>
+			<div class="block"><h1>3</h1></div>
+			<div class="block"><h1>4</h1></div>
+			<div class="fork hideable hidden">
+				<div class="block a"><h1>5A</h1></div>
+				<div class="block b"><h1>5B</h1></div>
+			</div>
+		</div>
 	</div>
+	<div id="block-view-postfork" class="step overview" data-x="4500" data-y="1200" data-scale="4">
+	</div>
+
 
 </div>
 
@@ -206,19 +221,28 @@
 	BTC.onStepEnter('network-solve-4', function(){
 		colorNodes('blue', ['a1','b1','c1'], 'red');
 	});
+	/* Fade the network out as we zoom in on the hash demo */
+	BTC.onStepLeave('network-solve-4', function(){
+		console.log('fading network overview');
+		document.getElementById('network-overview').classList.add('hidden');
+		document.getElementById('verbose-blockchain').classList.add('hidden');
+	});
+	/* Set up the network/blockchain while we're watching the hash demo */
 	BTC.onStepEnter('hash-demo', function(){
-		//TODO remove the whole table, and animate the fadeout
-		['a2', 'a3','a4','a5','b2', 'b3','b4','b5'].forEach(function(id){
+		['a1', 'a2', 'a3','a4','a5','b1', 'b2', 'b3','b4','b5','c1','c2','c3','c4','c5'].forEach(function(id){
 			var el = document.getElementById('node-' + id);
-			el.style.display = 'none';
 			el.classList.remove('hl-blue');
 			//TODO replace verbose blocks with simplified block chain
 		});
 	});
-	BTC.onStepEnter('block-view-prefork', function(){
-		['a2', 'a3','a4','a5','b2', 'b3','b4','b5'].forEach(function(id){
-			document.getElementById('node-' + id).style.display = 'table-cell';
-		});
+	/* Make sure the network doesn't fade out anymore */
+	BTC.onStepLeave('hash-demo', function() {
+		document.getElementById('network-overview').classList.remove('hidden');
+	});
+
+	BTC.onStepEnter('block-view-postfork', function(){
+		document.getElementById('block-view-prefork')
+		.querySelector('div.fork').classList.remove('hidden');
 	});
 
 	/* Handle hash input */
