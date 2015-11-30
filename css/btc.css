@@ -286,6 +286,10 @@ a:focus {
 	box-shadow: 0 0 30px rgba(0, 0, 255, 1);
 }
 
+#hash-demo {
+	z-index: 100;
+}
+
 #hashOutput li {
 	font-family: monospace;
 	font-size: 30px;
