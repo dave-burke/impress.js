@@ -722,6 +722,7 @@
             }
         }, false);
         
+	/*
         // delegated handler for clicking on the links to presentation steps
         document.addEventListener("click", function ( event ) {
             // event delegation with "bubbling"
@@ -780,6 +781,7 @@
                 }
             }
         }, false);
+	*/
         
         // rescale presentation when window is resized
         window.addEventListener("resize", throttle(function () {
