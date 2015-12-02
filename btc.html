@@ -87,16 +87,16 @@
 			<p>"I, Emily, give 1 of the coins I got from Dave back to myself as change."</p>
 		</div>
 
-		<div class="step block" data-x="3000" data-y="500" data-scale="2">
+		<div id="big-block-1" class="step block hideable" data-x="3000" data-y="500" data-scale="2">
 			<h3>Block 1</h3>
 		</div>
-		<div class="step block" data-x="4000" data-y="500" data-scale="2">
+		<div id="big-block-2" class="step block hideable" data-x="4000" data-y="500" data-scale="2">
 			<h3>Block 2</h3>
 		</div>
-		<div class="step block" data-x="5000" data-y="500" data-scale="2">
+		<div id="big-block-3" class="step block hideable" data-x="5000" data-y="500" data-scale="2">
 			<h3>Block 3</h3>
 		</div>
-		<div class="step block" data-x="6000" data-y="500" data-scale="2">
+		<div id="big-block-4" class="step block hideable" data-x="6000" data-y="500" data-scale="2">
 			<h3>Block 4</h3>
 		</div>
 	</div>
@@ -143,7 +143,7 @@
 	</div>
 	<div id="network-solve-4" class="step overview" data-x="4500" data-y="1200" data-scale="4">
 	</div>
-	<div id="hash-demo" class="step hideInactive" data-x="4900" data-y="1300">
+	<div id="hash-demo" class="step hideable" data-x="4900" data-y="1300">
 		<form id="hashForm" action="#">
 			<p>
 				<input id="hashInput" type="text"/>
@@ -153,13 +153,13 @@
 		<ul id="hashOutput">
 		</ul>
 	</div>
-	<div id="block-view-prefork" class="step hideBefore" data-x="4500" data-y="1200" data-scale="4">
+	<div id="block-view-prefork" class="step hideable" data-x="4500" data-y="1200" data-scale="4">
 		<div class="simple-chain">
 			<div class="block"><h1>1</h1></div>
 			<div class="block"><h1>2</h1></div>
 			<div class="block"><h1>3</h1></div>
 			<div class="block"><h1>4</h1></div>
-			<div class="fork hideable hidden">
+			<div id="fork" class="hideable">
 				<div class="block a"><h1>5A</h1></div>
 				<div class="block b"><h1>5B</h1></div>
 			</div>
@@ -177,9 +177,8 @@
 <script>
 	var api = impress();
 	api.init();
-	BTC.onStepEnter('wheel-overview', function(){
-		api.next();
-	});
+	var BTC = btc(api);
+
 	function colorNodes(color, arrId, removeColor){
 		arrId.forEach(function(id){
 			var el = document.getElementById('node-' + id);
@@ -221,12 +220,6 @@
 	BTC.onStepEnter('network-solve-4', function(){
 		colorNodes('blue', ['a1','b1','c1'], 'red');
 	});
-	/* Fade the network out as we zoom in on the hash demo */
-	BTC.onStepLeave('network-solve-4', function(){
-		console.log('fading network overview');
-		document.getElementById('network-overview').classList.add('hidden');
-		document.getElementById('verbose-blockchain').classList.add('hidden');
-	});
 	/* Set up the network/blockchain while we're watching the hash demo */
 	BTC.onStepEnter('hash-demo', function(){
 		['a1', 'a2', 'a3','a4','a5','b1', 'b2', 'b3','b4','b5','c1','c2','c3','c4','c5'].forEach(function(id){
@@ -234,36 +227,6 @@
 			el.classList.remove('hl-blue');
 			//TODO replace verbose blocks with simplified block chain
 		});
-	});
-	/* Make sure the network doesn't fade out anymore */
-	BTC.onStepLeave('hash-demo', function() {
-		document.getElementById('network-overview').classList.remove('hidden');
-	});
-
-	BTC.onStepEnter('block-view-postfork', function(){
-		document.getElementById('block-view-prefork')
-		.querySelector('div.fork').classList.remove('hidden');
-	});
-
-	/* Handle hash input */
-	var hashInput = document.getElementById('hashInput');
-	hashInput.addEventListener('keyup', function(e){
-		//Don't change slides when typing in the input
-		e.stopPropagation();
-	});
-
-	var hashForm = document.getElementById('hashForm');
-	hashForm.addEventListener('submit', function(e){
-		e.preventDefault();
-		var input = document.getElementById('hashInput').value;
-		var output = cryptofoo.md5(input);
-
-		var list = document.getElementById('hashOutput');
-		var listItem = document.createElement('li');
-		var listItemText = document.createTextNode(output + '(' + input + ')');
-
-		listItem.appendChild(listItemText);
-		list.appendChild(listItem);
 	});
 
 </script>
