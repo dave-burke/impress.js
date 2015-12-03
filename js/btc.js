@@ -217,7 +217,7 @@
 				[' ',' ',' ',' ',' '],
 				[' ','r',' ',' ',' '],
 				[' ',' ',' ',' ',' ']
-			], true));
+			], false));
 		when(during('network-announce-2'), animateNodes([
 				['r','r','r',' ',' '],
 				['r','r','r',' ',' '],
@@ -237,7 +237,7 @@
 				['r','r','r','b','r'],
 				['r','r','r','r','r'],
 				['r','r','r','r','r']
-			], true));
+			], false));
 		when(during('network-solve-2'), animateNodes([
 				['r','r','b','b','b'],
 				['r','r','b','b','b'],

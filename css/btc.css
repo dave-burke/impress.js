@@ -261,7 +261,7 @@ a:focus {
 .step table.network {
 	position: absolute;
 	top: 50px;
-	left: 250px;
+	left: 305px;
 }
 .step table.network td {
 	padding: 5px;
@@ -269,14 +269,17 @@ a:focus {
 
 /* Highlight a node on slide transition */
 .step table.network td.hl-red img {
+	background-color: rgba(255, 0, 0, .4);
 	box-shadow: 0 0 30px rgba(255, 0, 0, 1);
 }
 
 .step table.network td.hl-blue img {
+	background-color: rgba(0, 0, 255, .4);
 	box-shadow: 0 0 30px rgba(0, 0, 255, 1);
 }
 
 #hash-demo {
+	top: -1em;
 	z-index: 100;
 }
 
