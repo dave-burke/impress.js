@@ -49,6 +49,27 @@
 			return arrayify( context.querySelectorAll(selector) );
 		}
 
+		function highlight(el, color){ 
+			switch(color){
+				case 'r':
+					el.classList.remove('hl-blue');
+					if(!el.classList.contains('hl-red')){
+						el.classList.add('hl-red');
+					}
+					break;
+				case 'b':
+					el.classList.remove('hl-red');
+					if(!el.classList.contains('hl-blue')){
+						el.classList.add('hl-blue');
+					}
+					break;
+				default:
+					el.classList.remove('hl-blue');
+					el.classList.remove('hl-red');
+					break;
+			}
+		}
+
 		/* TEST FUNCTIONS */
 
 		function hasClass(el, className){
@@ -137,6 +158,24 @@
 			};
 		}
 
+		function animateNodes(config, autoAdvance){
+			return function(){
+				var i, j;
+
+				for(i = 0; i < config.length; i++){
+					for(j = 0; j < config[i].length; j++){
+						var node = byId('node-' + i + j);
+						var color = config[i][j];
+						highlight(node, color);
+					}
+				}
+
+				if(autoAdvance){
+					impress.next();
+				}
+			};
+		}
+
 		function doAll(){
 			var argArr = Array.from(arguments);
 			return function(){
@@ -169,6 +208,56 @@
 		when(before('big-block-2'), addClass('big-block-2', 'hidden'), removeClass('big-block-2', 'hidden'));
 		when(before('big-block-3'), addClass('big-block-3', 'hidden'), removeClass('big-block-3', 'hidden'));
 		when(before('big-block-4'), addClass('big-block-4', 'hidden'), removeClass('big-block-4', 'hidden'));
+		when(before('network-announce-1'), animateNodes([
+				[' ',' ',' ',' ',' '],
+				[' ',' ',' ',' ',' '],
+				[' ',' ',' ',' ',' ']
+			], false));
+		when(during('network-announce-1'), animateNodes([
+				[' ',' ',' ',' ',' '],
+				[' ','r',' ',' ',' '],
+				[' ',' ',' ',' ',' ']
+			], true));
+		when(during('network-announce-2'), animateNodes([
+				['r','r','r',' ',' '],
+				['r','r','r',' ',' '],
+				['r','r','r',' ',' ']
+			], true));
+		when(during('network-announce-3'), animateNodes([
+				['r','r','r','r',' '],
+				['r','r','r','r',' '],
+				['r','r','r','r',' ']
+			], true));
+		when(during('network-announce-4'), animateNodes([
+				['r','r','r','r','r'],
+				['r','r','r','r','r'],
+				['r','r','r','r','r']
+			], false));
+		when(during('network-solve-1'), animateNodes([
+				['r','r','r','b','r'],
+				['r','r','r','r','r'],
+				['r','r','r','r','r']
+			], true));
+		when(during('network-solve-2'), animateNodes([
+				['r','r','b','b','b'],
+				['r','r','b','b','b'],
+				['r','r','r','r','r']
+			], true));
+		when(during('network-solve-3'), animateNodes([
+				['r','b','b','b','b'],
+				['r','b','b','b','b'],
+				['r','b','b','b','b']
+			], true));
+		when(during('network-solve-4'), animateNodes([
+				['b','b','b','b','b'],
+				['b','b','b','b','b'],
+				['b','b','b','b','b']
+			], false));
+		when(after('network-solve-4'), animateNodes([
+				[' ',' ',' ',' ',' '],
+				[' ',' ',' ',' ',' '],
+				[' ',' ',' ',' ',' ']
+			], false));
 		when(after('network-solve-4'), addClass('verbose-blockchain', 'hidden'), removeClass('verbose-blockchain', 'hidden'));
 		when(anyOf(
 				before('network-overview'),
