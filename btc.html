@@ -11,6 +11,7 @@
 	<meta name="author" content="Dave Burke" />
 
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+	<link href='https://fonts.googleapis.com/css?family=Pinyon+Script' rel='stylesheet' type='text/css'>
 
 	<!--
 	    
@@ -104,6 +105,7 @@
 	</div>
 	<div id="network-overview" class="step hideable" data-x="4500" data-y="1200" data-scale="4">
 		<table id="network-table" class="network">
+			<!-- Use FontAwesome and text-border(?) -->
 			<tr>
 				<td id="node-00"><img alt="X" src="images/server.png" /></td>
 				<td id="node-01"><img alt="X" src="images/server.png" /></td>
@@ -147,11 +149,44 @@
 		<form id="hashForm" action="#">
 			<p>
 				<input id="hashInput" type="text"/>
-				<input id="hashSubmit" type="submit" value="Hash"/>
+				<input id="hashSubmit" type="submit" value="Hash it!"/>
 			</p>
 		</form>
 		<ul id="hashOutput">
 		</ul>
+	</div>
+	<div id="mine-demo" class="step top hideable" data-x="4725" data-y="1400" data-scale="0.1">
+		<form id="mineForm" action="#">
+			<div class="equation">
+				<div>Last block:&nbsp;</div>
+				<div><code id="prev-block">00000bcd4621d373cade4e832627b4f6</code></div>
+			</div>
+			<div>+</div>
+			<div class="equation">
+				<div>
+					<p>New</p>
+					<p>transactions:</p>
+					<p>&nbsp;</p>
+				</div>
+				<div>
+					<ul id='transaction-list'>
+						<li><code>I give Bob 1 coin. - </code><span class="sig">Alice</span></li>
+						<li><code>I give Bob 1 coin. - </code><span class="sig">Charlie</span></li>
+						<li><code>I give myself 1 coin. - </code><span class="sig">Dave</span></li>
+					</ul>
+				</div>
+			</div>
+			<div>+</div>
+			<div class="equation">
+				<div>Solution</div>
+				<div id="mineSolution">?</div>
+			</div>
+			<div>=</div>
+			<div id="mineResult">&nbsp;</div>
+			<div>
+				<input id="mineSubmit" type="submit" value="Solve it!"/> for <input id="mineDifficulty" type="text" size="1" value="1"/> zeroes.
+			</div>
+		</form>
 	</div>
 	<div id="block-view-prefork" class="step hideable" data-x="4500" data-y="1200" data-scale="4">
 		<div class="simple-chain">
@@ -178,7 +213,6 @@
 	var api = impress();
 	api.init();
 	var BTC = btc(api);
-
 </script>
 
 </body>

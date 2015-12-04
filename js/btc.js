@@ -128,8 +128,8 @@
 		}
 
 		function not(func){
-			return function(){
-				return !func();
+			return function(event){
+				return !func(event);
 			};
 		}
 
@@ -261,20 +261,23 @@
 		when(after('network-solve-4'), addClass('verbose-blockchain', 'hidden'), removeClass('verbose-blockchain', 'hidden'));
 		when(anyOf(
 				before('network-overview'),
-				during('hash-demo')),
+				allOf(after('network-solve-4'), not(after('mine-demo')))),
 			addClass('network-overview', 'hidden'), removeClass('network-overview', 'hidden'));
 		when(during('hash-demo'), removeClass('hash-demo', 'hidden'), addClass('hash-demo', 'hidden'));
+		when(during('hash-demo'), addClass('hash-demo', 'above'), removeClass('hash-demo', 'above'));
+		when(during('mine-demo'), removeClass('mine-demo', 'hidden'), addClass('mine-demo', 'hidden'));
+		when(during('mine-demo'), addClass('mine-demo', 'above'), removeClass('mine-demo', 'above'));
 		when(before('block-view-prefork'), addClass('block-view-prefork', 'hidden'), removeClass('block-view-prefork', 'hidden'));
 		when(after('block-view-prefork'), removeClass('fork','hidden'), addClass('fork', 'hidden'));
 
 		/* Handle hash input */
-		var hashInput = document.getElementById('hashInput');
+		var hashInput = byId('hashInput');
 		hashInput.addEventListener('keyup', function(e){
 			//Don't change slides when typing in the input
 			e.stopPropagation();
 		});
 
-		var hashForm = document.getElementById('hashForm');
+		var hashForm = byId('hashForm');
 		hashForm.addEventListener('submit', function(e){
 			e.preventDefault();
 			var input = document.getElementById('hashInput').value;
@@ -286,6 +289,31 @@
 
 			listItem.appendChild(listItemText);
 			list.appendChild(listItem);
+		});
+
+		function testSolution(input, solution, difficulty){
+			difficulty = difficulty || 2;
+			byId('mineSolution').innerHTML = solution;
+			var result = cryptofoo.md5(input + solution);
+			byId('mineResult').innerHTML = result;
+			if(!result.startsWith('0'.repeat(difficulty))){
+				window.setTimeout(function(){
+					solution++;
+					testSolution(input, solution, difficulty);
+				}, 1);
+			}
+		}
+
+		var mineForm = byId('mineForm');
+		mineForm.addEventListener('submit', function(e){
+			e.preventDefault();
+			var input = byId('prev-block').innerHTML;
+			input += $$('#transaction-list li').map(function(it){ 
+				return it.innerHTML;
+			});
+			var difficulty = byId('mineDifficulty').value;
+
+			testSolution(input, 0, difficulty);
 		});
 
 

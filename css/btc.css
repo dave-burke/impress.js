@@ -77,6 +77,7 @@ body {
 */
 b, strong { font-weight: bold }
 i, em { font-style: italic }
+code { font-family: monospace; }
 
 /*
     ... and give links a nice look.
@@ -161,6 +162,10 @@ a:focus {
 
 .top {
 	vertical-align: top;
+}
+
+.sig {
+	font-family: 'Pinyon Script', cursive; !important
 }
 
 /*
@@ -278,15 +283,29 @@ a:focus {
 	box-shadow: 0 0 30px rgba(0, 0, 255, 1);
 }
 
-#hash-demo {
-	top: -1em;
-	z-index: 100;
+.above {
+	z-index: 100; !important;
 }
 
+#hash-demo {
+	top: -1em;
+}
 #hashOutput li {
 	font-family: monospace;
 	font-size: 30px;
 	text-align: left;
+}
+
+#mine-demo {
+	top: -0.4em;
+	left: 0.25em;
+	width: 1500px;
+}
+#mine-demo div.equation {
+	display: flex;
+}
+#mine-demo #mineSolution {
+	flex-grow: 0.85;
 }
 
 /*
