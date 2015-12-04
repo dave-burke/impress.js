@@ -71,21 +71,21 @@
 
 	<div id="verbose-blockchain" class="hideable">
 		<div class="step" data-x="3000" data-y="0">
-			<p>"I, Alice, give Bob 1 coin."</p>
+			<p>"I give Bob 1 coin." <span id="alice-sig" class="sig">- Alice</span></p>
 		</div>
 		<div class="step" data-x="3000" data-y="1000">
-			<p>"I, Charlie, give Bob 1 coin."</p>
+			<p>"I give Bob 1 coin." <span class="sig">- Charlie</span></p>
 		</div>
 		<div class="step" data-x="4000" data-y="500">
-			<p>"I, Bob, give Dave the 1 coin I got from Alice."</p>
-			<p>"I, Bob, give Dave the 1 coin I got from Charlie."</p>
+			<p>"I give Dave the 1 coin I got from Alice." <span class="sig">- Bob</span></p>
+			<p>"I give Dave the 1 coin I got from Charlie." <span class="sig">- Bob</span></p>
 		</div>
 		<div class="step" data-x="5000" data-y="500">
-			<p>"I, Dave, give Emily the 2 coins I got from Bob"</p>
+			<p>"I give Emily the 2 coins I got from Bob" <span class="sig">- Dave</span></p>
 		</div>
 		<div class="step" data-x="6000" data-y="500">
-			<p>"I, Emily, give Gary 1 of the coins I got from Dave."</p>
-			<p>"I, Emily, give 1 of the coins I got from Dave back to myself as change."</p>
+			<p>"I give Gary 1 of the coins I got from Dave." <span class="sig">- Emily</span></p>
+			<p>"I give 1 of the coins I got from Dave back to myself as change." <span class="sig">- Emily</span></p>
 		</div>
 
 		<div id="big-block-1" class="step block hideable" data-x="3000" data-y="500" data-scale="2">
