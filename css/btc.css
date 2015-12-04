@@ -266,21 +266,21 @@ a:focus {
 .step table.network {
 	position: absolute;
 	top: 50px;
-	left: 305px;
+	left: 260px;
 }
 .step table.network td {
 	padding: 5px;
 }
 
 /* Highlight a node on slide transition */
-.step table.network td.hl-red img {
-	background-color: rgba(255, 0, 0, .4);
-	box-shadow: 0 0 30px rgba(255, 0, 0, 1);
+.step table.network td.hl-red span.fa {
+	//background-color: rgba(255, 0, 0, .4);
+	text-shadow: 0 0 10px rgba(255, 0, 0, 1);
 }
 
-.step table.network td.hl-blue img {
-	background-color: rgba(0, 0, 255, .4);
-	box-shadow: 0 0 30px rgba(0, 0, 255, 1);
+.step table.network td.hl-blue span.fa {
+	//background-color: rgba(0, 0, 255, .4);
+	text-shadow: 0 0 10px rgba(0, 0, 255, 1);
 }
 
 .above {
