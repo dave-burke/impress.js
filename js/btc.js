@@ -53,19 +53,29 @@
 			switch(color){
 				case 'r':
 					el.classList.remove('hl-blue');
+					el.classList.remove('hl-green');
 					if(!el.classList.contains('hl-red')){
 						el.classList.add('hl-red');
 					}
 					break;
 				case 'b':
 					el.classList.remove('hl-red');
+					el.classList.remove('hl-green');
 					if(!el.classList.contains('hl-blue')){
 						el.classList.add('hl-blue');
+					}
+					break;
+				case 'g':
+					el.classList.remove('hl-red');
+					el.classList.remove('hl-blue');
+					if(!el.classList.contains('hl-green')){
+						el.classList.add('hl-green');
 					}
 					break;
 				default:
 					el.classList.remove('hl-blue');
 					el.classList.remove('hl-red');
+					el.classList.remove('hl-green');
 					break;
 			}
 		}
@@ -155,6 +165,13 @@
 		function nextStep(){
 			return function(){
 				impress.next();
+			};
+		}
+
+		function setText(el, text){
+			el = byId(el);
+			return function(){
+				el.innerHTML = text;
 			};
 		}
 
@@ -268,7 +285,48 @@
 		when(during('mine-demo'), removeClass('mine-demo', 'hidden'), addClass('mine-demo', 'hidden'));
 		when(during('mine-demo'), addClass('mine-demo', 'above'), removeClass('mine-demo', 'above'));
 		when(before('block-view-prefork'), addClass('block-view-prefork', 'hidden'), removeClass('block-view-prefork', 'hidden'));
-		when(after('block-view-prefork'), removeClass('fork','hidden'), addClass('fork', 'hidden'));
+		when(after('block-view-fork'), removeClass('fork','hidden'), addClass('fork', 'hidden'));
+		when(after('block-view-postfork'), removeClass('fork-branch', 'hidden'), addClass('fork-branch', 'hidden'));
+		when(allOf(
+				after('block-view-fork'), 
+				before('block-view-postfork3')),
+			doAll(
+				addClass('block5a', 'hl-red'),
+				addClass('block5b', 'hl-blue')),
+			doAll(
+				removeClass('block5a', 'hl-red'),
+				removeClass('block5b', 'hl-blue'))); 
+		when(after('block-view-prefork'), animateNodes([
+				['b',' ',' ',' ',' '],
+				[' ',' ',' ',' ',' '],
+				[' ',' ',' ','r',' ']
+			], false));
+		when(after('block-view-fork'), animateNodes([
+				['b','b','b','r','r'],
+				['b','b','r','r','r'],
+				['b','b','r','r','r']
+			], false));
+		when(after('block-view-postfork'), animateNodes([
+				['b','b','b','r','r'],
+				['b','b','g','r','r'],
+				['b','b','r','r','r']
+			], false));
+		when(after('block-view-postfork2'), animateNodes([
+				['g','g','g','g','g'],
+				['g','g','g','g','g'],
+				['g','g','g','g','g']
+			], false));
+		when(after('block-view-postfork2'), addClass('block5b-container', 'hidden'), removeClass('block5b-container', 'hidden'));
+		when(after('block-view-postfork3'), addClass('fork', 'aligned-fork'), removeClass('fork', 'aligned-fork'));
+		when(after('block-view-postfork3'), addClass('fork-branch', 'aligned-fork'), removeClass('fork-branch', 'aligned-fork'));
+		when(after('block-view-postfork3'), setText('block5a', '5'), setText('block5a', '5A'));
+		when(after('block-view-postfork3'), setText('block6a', '6'), setText('block6a', '6A'));
+		when(before('block-view-postfork4'), addClass('arrow45', 'hidden'), removeClass('arrow45', 'hidden'));
+		when(after('block-view-postfork3'), animateNodes([
+				[' ',' ',' ',' ',' '],
+				[' ',' ',' ',' ',' '],
+				[' ',' ',' ',' ',' ']
+			], false));
 
 		/* Handle hash input */
 		var hashInput = byId('hashInput');

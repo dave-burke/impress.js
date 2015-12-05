@@ -12,6 +12,7 @@
 
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
 	<link href='https://fonts.googleapis.com/css?family=Pinyon+Script' rel='stylesheet' type='text/css'>
+	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">-->
 	<link rel="stylesheet" href="lib/font-awesome-4.5.0/css/font-awesome.min.css">
 
 	<!--
@@ -106,6 +107,7 @@
 	</div>
 	<div id="network-overview" class="step hideable" data-x="4500" data-y="1200" data-scale="4">
 		<table id="network-table" class="network">
+			<!-- Use FontAwesome and text-shadow(?) -->
 			<tr>
 				<td id="node-00"><span class="fa fa-server">&nbsp;</span></td>
 				<td id="node-01"><span class="fa fa-laptop">&nbsp;</span></td>
@@ -191,16 +193,34 @@
 	<div id="block-view-prefork" class="step hideable" data-x="4500" data-y="1200" data-scale="4">
 		<div class="simple-chain">
 			<div class="block"><h1>1</h1></div>
+			<span class="chain-arrow fa fa-long-arrow-right">&nbsp;</span>
 			<div class="block"><h1>2</h1></div>
+			<span class="chain-arrow fa fa-long-arrow-right">&nbsp;</span>
 			<div class="block"><h1>3</h1></div>
+			<span class="chain-arrow fa fa-long-arrow-right">&nbsp;</span>
 			<div class="block"><h1>4</h1></div>
-			<div id="fork" class="hideable">
-				<div class="block a"><h1>5A</h1></div>
-				<div class="block b"><h1>5B</h1></div>
-			</div>
 		</div>
 	</div>
-	<div id="block-view-postfork" class="step overview" data-x="4500" data-y="1200" data-scale="4">
+	<div id="block-view-fork" class="step overview" data-x="4500" data-y="1200" data-scale="4">
+	</div>
+	<div id="block-view-postfork" class="step" data-x="5600" data-y="1200" data-scale="4">
+		<div id="fork" class="hideable">
+			<div class="block a"><h1 id="block5a">5A</h1></div>
+			<div id="block5b-container" class="block b hideable"><h1 id="block5b">5B</h1></div>
+		</div>
+	</div>
+	<div id="block-view-postfork2" class="step" data-x="5600" data-y="1200" data-scale="4">
+		<div id="fork-branch" class="hideable">
+			<span class="chain-arrow fa fa-long-arrow-right">&nbsp;</span>
+			<div class="block a2"><h1 id="block6a">6A</h1></div>
+		</div>
+	</div>
+	<div id="block-view-postfork3" class="step overview" data-x="5600" data-y="1200" data-scale="4">
+	</div>
+	<div id="block-view-postfork4" class="step " data-x="5600" data-y="1200" data-scale="4">
+		<div id="arrow45" class="hideable">
+			<span class="chain-arrow fa fa-long-arrow-right">&nbsp;</span>
+		</div>
 	</div>
 
 
