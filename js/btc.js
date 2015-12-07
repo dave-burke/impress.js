@@ -221,6 +221,7 @@
 		}
 
 		when(during('wheel-overview'), nextStep());
+		when(before('alice-sig-view'), addClass('alice-sig', 'hidden'), removeClass('alice-sig', 'hidden'));
 		when(before('big-block-1'), addClass('big-block-1', 'hidden'), removeClass('big-block-1', 'hidden'));
 		when(before('big-block-2'), addClass('big-block-2', 'hidden'), removeClass('big-block-2', 'hidden'));
 		when(before('big-block-3'), addClass('big-block-3', 'hidden'), removeClass('big-block-3', 'hidden'));

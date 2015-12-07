@@ -72,26 +72,24 @@
 	</div>
 
 	<div id="verbose-blockchain" class="hideable">
-		<!--TODO use BTC icon-->
 		<div class="step" data-x="3000" data-y="0">
-			<p>"I give Bob <span class="fa fa-btc">&nbsp;</span>1." <span id="alice-sig" class="sig hideable">- Alice</span></p>
+			<p>"I give Bob <span class="fa fa-btc">&nbsp;</span>1" <span id="alice-sig" class="sig hideable">- Alice</span></p>
 		</div>
-		<div class="step overview" data-x="3000" data-y="0">
-			<!--TODO fade in first signature-->
+		<div id="alice-sig-view" class="step overview" data-x="3000" data-y="0">
 		</div>
 		<div class="step" data-x="3000" data-y="1000">
-			<p>"I give Bob <span class="fa fa-btc">&nbsp;</span>1." <span class="sig">- Charlie</span></p>
+			<p>"I give Bob <span class="fa fa-btc">&nbsp;</span>1" <span class="sig">- Charlie</span></p>
 		</div>
 		<div class="step" data-x="4000" data-y="500">
-			<p>"I give Dave the <span class="fa fa-btc">&nbsp;</span>1 I got from Alice." <span class="sig">- Bob</span></p>
-			<p>"I give Dave the <span class="fa fa-btc">&nbsp;</span>1 I got from Charlie." <span class="sig">- Bob</span></p>
+			<p>"I give Dave the <span class="fa fa-btc">&nbsp;</span>1 I got from Alice" <span class="sig">- Bob</span></p>
+			<p>"I give Dave the <span class="fa fa-btc">&nbsp;</span>1 I got from Charlie" <span class="sig">- Bob</span></p>
 		</div>
 		<div class="step" data-x="5000" data-y="500">
 			<p>"I give Emily the <span class="fa fa-btc">&nbsp;</span>2 I got from Bob" <span class="sig">- Dave</span></p>
 		</div>
 		<div class="step" data-x="6000" data-y="500">
-			<p>"I give Gary <span class="fa fa-btc">&nbsp;</span>1 I got from Dave." <span class="sig">- Emily</span></p>
-			<p>"I give <span class="fa fa-btc">&nbsp;</span>1 I got from Dave back to myself as change." <span class="sig">- Emily</span></p>
+			<p>"I give Gary <span class="fa fa-btc">&nbsp;</span>1 I got from Dave" <span class="sig">- Emily</span></p>
+			<p>"I give <span class="fa fa-btc">&nbsp;</span>1 I got from Dave back to myself as change" <span class="sig">- Emily</span></p>
 		</div>
 
 		<div id="big-block-1" class="step block hideable" data-x="3000" data-y="500" data-scale="2">
@@ -111,7 +109,6 @@
 	</div>
 	<div id="network-overview" class="step hideable" data-x="4500" data-y="1200" data-scale="4">
 		<table id="network-table" class="network">
-			<!-- Use FontAwesome and text-shadow(?) -->
 			<tr>
 				<td id="node-00"><span class="fa fa-server">&nbsp;</span></td>
 				<td id="node-01"><span class="fa fa-laptop">&nbsp;</span></td>
