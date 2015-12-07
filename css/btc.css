@@ -250,6 +250,10 @@ a:focus {
 	padding: 5px;
 }
 
+.fa-btc {
+	margin-right: -0.25em;
+}
+
 /* Highlight a node on slide transition */
 .hl-red {
 	text-shadow: 0 0 10px rgba(255, 0, 0, 1);
