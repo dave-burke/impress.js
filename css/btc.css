@@ -313,7 +313,7 @@ a:focus {
 .impress-enabled .step #fork-branch {
 	position: relative;
 	top: -100px;
-	left: 400px;
+	left: 375px;
 	width: 100px;
 	height: 230px;
 	display: inline-block;
@@ -338,7 +338,7 @@ a:focus {
 .impress-enabled .step #arrow45 {
 	position: relative;
 	top: -115px;
-	left: 140px;
+	left: 120px;
 }
 
 
