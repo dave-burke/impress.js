@@ -211,13 +211,6 @@
 					elseFunc(event);
 				}
 			});
-			document.addEventListener('impress:stepleave', function(event){
-				if(testFunc(event)){
-					actionFunc(event);
-				} else if(elseFunc) {
-					elseFunc(event);
-				}
-			});
 		}
 
 		when(during('wheel-overview'), nextStep());
