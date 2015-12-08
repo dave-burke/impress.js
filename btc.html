@@ -30,21 +30,29 @@
 
 <div id="impress">
 
+	<!-- Historically, when financial transactions were handled with... -->
 	<div class="step overview" data-x="0" data-y="-2000">
 	</div>
 
+	<!-- Bartering -->
 	<div class="step fadeout" data-x="0" data-y="-1000">
 		<h3>Bartering</h3>
 	</div>
 
+	<!--Gold-->
 	<div class="step fadeout" data-x="1000" data-y="0" data-rotate="90">
 		<h3>Gold</h3>
 	</div>
 
+	<!--or cash, it was possible for two people to exchange money directly
+	between eachother with no third party required.-->
 	<div class="step fadeout" data-x="0" data-y="1000" data-rotate="180">
 		<h3>Cash</h3>
 	</div>
 
+	<!-- In the modern world, especially with the rise of the internet, we
+	need banking. When you buy something online, you need to go through
+	your credit card company, or bank, or something like paypal.  -->
 	<div class="step fadeout" data-x="-1000" data-y="0" data-rotate="270">
 		<h3>Banking</h3>
 	</div>
@@ -52,19 +60,33 @@
 	<div id="wheel-overview" class="step overview" data-x="0" data-y="0" data-scale="3">
 	</div>
 	<div class="step" data-x="0" data-y="0">
+		<!-- That's why we want Bitcoin: a revolutionary new currency
+		that provides trust through mathematical guarantees without a
+		middleman. There's no Federal Reserve of Bitcoin. Let's talk
+		about how it works.  -->
 		<h3>Bitcoin</h3>
 		<em>Money without the middleman</em>
 	</div>
 
 	<div id="verbose-blockchain" class="hideable">
+		<!-- Let's start with the simplest form of transaction. A declaration of intent. -->
 		<div class="step" data-x="3000" data-y="0">
 			<p>"I give Bob <span class="fa fa-btc">&nbsp;</span>1" <span id="alice-sig" class="sig hideable">- Alice</span></p>
 		</div>
+		<!-- The first step is to sign it. We use a digital
+		cryptographic signature, but otherwise, we've basically got a
+		check.  How do we cash it without a bank? -->
 		<div id="alice-sig-view" class="step overview" data-x="3000" data-y="0">
 		</div>
+		<!-- Let's add a few more transactions first -->
 		<div class="step" data-x="3000" data-y="1000">
 			<p>"I give Bob <span class="fa fa-btc">&nbsp;</span>1" <span class="sig">- Charlie</span></p>
 		</div>
+		<!-- Notice that whenever someone gives a coin, they include a
+		reference to where the coin came from previously That's
+		necessary so that the whole history of every Bitcoin can be
+		verified, and we can prove that the giver had a legitimate
+		claim to that particular amount of money. -->
 		<div class="step" data-x="4000" data-y="500">
 			<p>"I give Dave the <span class="fa fa-btc">&nbsp;</span>1 I got from Alice" <span class="sig">- Bob</span></p>
 			<p>"I give Dave the <span class="fa fa-btc">&nbsp;</span>1 I got from Charlie" <span class="sig">- Bob</span></p>
@@ -77,6 +99,7 @@
 			<p>"I give <span class="fa fa-btc">&nbsp;</span>1 I got from Dave back to myself as change" <span class="sig">- Emily</span></p>
 		</div>
 
+		<!-- The next step is to group the transactions into blocks -->
 		<div id="big-block-1" class="step block hideable" data-x="3000" data-y="500" data-scale="2">
 			<h3>Block 1</h3>
 		</div>
@@ -90,8 +113,17 @@
 			<h3>Block 4</h3>
 		</div>
 	</div>
+	<!-- Each block represents all the transactions that happened during a
+	given time period.  Normally a bank decides which transactions are
+	considered valid. Without a bank, we need to find some way to agree
+	amongst ourselves.  -->
 	<div class="step overview" data-x="4500" data-y="500" data-scale="4">
 	</div>
+	<!-- We do that with the Bitcoin network. Each computer in the network
+	is just a regular computer.  It could be a computer like you have in
+	your office, or a laptop, all the way up to large commercial servers
+	and potentially all the way down to a cell phone. The Bitcoin software
+	is freely available and anyone can participate.  -->
 	<div id="network-overview" class="step hideable" data-x="4500" data-y="1200" data-scale="4">
 		<table id="network-table" class="network">
 			<tr>
@@ -117,22 +149,55 @@
 			</tr>
 		</table>
 	</div>
+	<!-- When someone wants to make a transaction, they announce it to the
+	network, and the information spreads until everyone knows about it.
+	-->
 	<div id="network-announce-1" class="step overview" data-x="4500" data-y="1200" data-scale="4">
 	</div>
 	<div id="network-announce-2" class="step overview" data-x="4500" data-y="1200" data-scale="4">
 	</div>
 	<div id="network-announce-3" class="step overview" data-x="4500" data-y="1200" data-scale="4">
 	</div>
+	<!-- All the computers in the network go to work trying to validate the
+	transaction.  They ensure that nobody spent money they didn't have, and
+	that nobody tried to spend the same coin twice -->
 	<div id="network-announce-4" class="step overview" data-x="4500" data-y="1200" data-scale="4">
 	</div>
+	<!-- Once one computer has successfully validated the next block of
+	transactions, they publish it to the network, and all the other
+	computers confirm that everything in the published block is valid.  -->
 	<div id="network-solve-1" class="step overview" data-x="4500" data-y="1200" data-scale="4">
 	</div>
 	<div id="network-solve-2" class="step overview" data-x="4500" data-y="1200" data-scale="4">
 	</div>
 	<div id="network-solve-3" class="step overview" data-x="4500" data-y="1200" data-scale="4">
 	</div>
+	<!-- Validating a block isn't as easy as adding up all the transactions
+	and checking the math.  Let's take a look at what's really going on in
+	those computers -->
 	<div id="network-solve-4" class="step overview" data-x="4500" data-y="1200" data-scale="4">
 	</div>
+	<!-- To explain how transactions get validated, I need to explain what
+	a hash is.  A hash is:
+		- Easy to computer in one direction
+		- Effectively impossible to reverse
+
+	If I hash "test" I get some output. The output is the same every time,
+	but if I change just one letter, the output changes completely.
+
+	Imagine you go to the library, pick out a book and write down
+	the first letter of every page. If you gave those letters to
+	someone, they would have no way to know which book it came
+	from, unless they looked at every book. On the other hand, if
+	you gave someone the book and asked them to write the first
+	letter of every page, they would produce exactly the same note
+	that you did.  You could easily confirm that you both used the
+	same book just by comparing notes.
+
+	You can easily make a note of first characters from a book, but
+	you can't get a book out of the list of first characters.
+	That's what we mean when we say a hash is a one way function.
+	-->
 	<div id="hash-demo" class="step hideable" data-x="4750" data-y="1380" data-scale="0.1">
 		<form id="hashForm" action="#">
 			<p>
@@ -143,6 +208,22 @@
 		<ul id="hashOutput">
 		</ul>
 	</div>
+	<!-- When a computer validates a block, they do so by finding a hash
+	that begins with a certain number of zeroes. They take all the data
+	that goes into the block: A reference to the previous block plus all
+	the new transactions, and they add an extra number and hash all that
+	together.  They keep trying different numbers until they find one that
+	gives them a hash output with the required leading zeroes.  The number
+	that finally makes the right hash is the official seal of approval for
+	the new block.  Notice how the last transaction is me giving a coin to
+	myself. That's my reward for solving the puzzle. It's my motivation to
+	spend my computing power to participate in making the network function.
+
+	The more zeroes we require, the harder it is to find a
+	solution, so we can make the puzzles easier or harder depending
+	on how many people are working on them. We want the solution to
+	be hard enough so that we don't have everyone in the network
+	making different valid blocks at the same time.  -->
 	<div id="mine-demo" class="step top hideable" data-x="4750" data-y="1380" data-scale="0.1">
 		<form id="mineForm" action="#">
 			<div class="equation">
@@ -167,7 +248,7 @@
 			<div>+</div>
 			<div class="equation">
 				<div>Solution</div>
-				<div id="mineSolution">?</div>
+				<div id="mineSolution">0</div>
 			</div>
 			<div>=</div>
 			<div id="mineResult">&nbsp;</div>
@@ -176,6 +257,14 @@
 			</div>
 		</form>
 	</div>
+	<!-- Sometimes, even with our hashing puzzle two people create a
+	solution at the same time. This could also be malicious. Imagine Alice
+	creates one valid block in which she gives 1BTC to Bob, and then
+	creates a second valid block in which she gives the same 1BTC to
+	Charlie.  This creates a "fork" in the block chain. Alice could show
+	Bob and Charlie their own custom version of "block 5" and each would
+	think they had been legitimately paid. Thankfully, Bitcoin has an
+	elegant solution.  -->
 	<div id="block-view-prefork" class="step hideable" data-x="4500" data-y="1200" data-scale="4">
 		<div class="simple-chain">
 			<div class="block"><h1>1</h1></div>
@@ -187,8 +276,13 @@
 			<div class="block"><h1>4</h1></div>
 		</div>
 	</div>
+	<!-- Whenever there is a fork in the block chain, each computer follows these rules:
+		1. Work on the longest chain.
+		2. If more than one chain is equal, work on the one you heard about first.
+	-->
 	<div id="block-view-fork" class="step overview" data-x="4500" data-y="1200" data-scale="4">
 	</div>
+	<!-- Right now the chains are equal, so each computer works on whatever they heard about first -->
 	<div id="block-view-postfork" class="step" data-x="5600" data-y="1200" data-scale="4">
 		<div id="fork" class="hideable">
 			<div class="block a"><h1 id="block5a">5A</h1></div>
@@ -201,14 +295,29 @@
 			<div class="block a2"><h1 id="block6a">6A</h1></div>
 		</div>
 	</div>
+	<!-- Eventually, a new block will be created by one group or the other.
+	Now the first rule comes into play.  The A chain is now unambiguously
+	longer, so everyone switches to that branch -->
 	<div id="block-view-postfork3" class="step overview" data-x="5700" data-y="1200" data-scale="4">
 	</div>
+	<!-- When everyone has agreed on the longest branch, the B branch is
+	effectively pruned. If Alice wants to pay Bob and Charlie with the same
+	coin, she needs to keep both branches equal. To do that, she has to
+	solve puzzles faster than the rest of the network combined. Even if
+	she could do that, everyone would see what she was doing. If Alice
+	really had that much control over the Bitcoin network, she'd be better
+	off working honestly and getting the reward for each block.  -->
 	<div id="block-view-postfork4" class="step " data-x="5700" data-y="1200" data-scale="4">
 		<div id="arrow45" class="hideable">
 			<span class="chain-arrow fa fa-long-arrow-right">&nbsp;</span>
 		</div>
 	</div>
 
+	<!--
+	With these concepts I've outlined, we've created a trusted, mathematically sound online
+	currency that doesn't require any central authority. In short, we've made
+	Money without the Middleman.
+	-->
 	<div class="step" data-x="0" data-y="0">
 	</div>
 
