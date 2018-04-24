@@ -28,35 +28,81 @@
   <div id="main" class="step" data-x="0" data-y="0">
     <div class="columns">
       <div>
-      <h3>Non-experts</h3>
-      <ol>
-        <li id="result1" class="hidden" >Use antivirus software</li>
-        <li id="result2" class="hidden" >Use strong passwords</li>
-        <li id="result3" class="hidden" >Change passwords frequently</li>
-        <li id="result4" class="hidden" >Only visit websites they know</li>
-        <li id="result5" class="hidden" >Don't share personal information</li>
-      </ol>
+        <h3>Non-experts</h3>
+        <div id="result1" class="card hidden">
+          <div class="cardContents">
+            <div class="text">Use antivirus software</div>
+            <div class="percent">10</div>
+          </div>
+        </div>
+        <div id="result2" class="card hidden">
+          <div class="cardContents">
+            <div class="text">Use strong passwords</div>
+            <div class="percent">10</div>
+          </div>
+        </div>
+        <div id="result3" class="card hidden">
+          <div class="cardContents">
+            <div class="text">Change passwords frequently</div>
+            <div class="percent">10</div>
+          </div>
+        </div>
+        <div id="result4" class="card hidden">
+          <div class="cardContents">
+            <div class="text">Only visit websites they know</div>
+            <div class="percent">10</div>
+          </div>
+        </div>
+        <div id="result5" class="card hidden">
+          <div class="cardContents">
+            <div class="text">Don't share personal info</div>
+            <div class="percent">10</div>
+          </div>
+        </div>
       </div>
       <div>
-      <h3>Experts</h3>
-      <ol>
-        <li id="result6" class="hidden">Install software updates</li>
-        <li id="result7" class="hidden">Use unique passwords</li>
-        <li id="result8" class="hidden">Use two-factor authentication</li>
-        <li id="result9" class="hidden">Use strong passwords</li>
-        <li id="result0" class="hidden">Use a password manager</li>
-      </ol>
+        <h3>Experts</h3>
+        <div id="result6" class="card hidden">
+          <div class="cardContents">
+            <div class="text">Install software updates</div>
+            <div class="percent">10</div>
+          </div>
+        </div>
+        <div id="result7" class="card hidden">
+          <div class="cardContents">
+            <div class="text">Use unique passwords</div>
+            <div class="percent">10</div>
+          </div>
+        </div>
+        <div id="result8" class="card hidden">
+          <div class="cardContents">
+            <div class="text">Use 2-factor authentication</div>
+            <div class="percent">10</div>
+          </div>
+        </div>
+        <div id="result9" class="card hidden">
+          <div class="cardContents">
+            <div class="text">Use strong passwords</div>
+            <div class="percent">10</div>
+          </div>
+        </div>
+        <div id="result0" class="card hidden">
+          <div class="cardContents">
+            <div class="text">Use a password manager</div>
+            <div class="percent">10</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <div id="rules1" class="step" data-x="1500" data-y="0" data-z="0">
-    <h1>Expert Rules</h1>
-    <ol>
-    <li>Keep your devices up to date</li>
-    <li>Don't click on any link you didn't expect</li>
-    <li>Use a password manager</li>
-    </ol>
-  </div>
+  <!--<div id="rules1" class="step" data-x="1500" data-y="0" data-z="0">-->
+    <!--<h1>Expert Rules</h1>-->
+    <!--<ol>-->
+    <!--<li>Keep your devices up to date</li>-->
+    <!--<li>Don't click on any link you didn't expect</li>-->
+    <!--<li>Use a password manager</li>-->
+    <!--</ol>-->
+  <!--</div>-->
 
 </div>
 
@@ -65,9 +111,11 @@
 
 <script>
   function handleKeyUp(e){
-  console.log(`Pressed ${e.key}`)
-  const resultEl = document.getElementById(`result${e.key}`)
-  resultEl.classList.toggle('hidden')
+    console.log(`Pressed ${e.key}`)
+    const resultEl = document.getElementById(`result${e.key}`)
+    if(resultEl){
+      resultEl.classList.toggle('hidden')
+    }
   }
   document.addEventListener('keyup', handleKeyUp)
 </script>
