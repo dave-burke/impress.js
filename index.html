@@ -25,31 +25,29 @@
 </div>
 
 <div id="impress">
-
     <div id="main" class="step" data-x="0" data-y="0">
-        <img src="overview.png">
-    </div>
-    <div id="users1" class="step" data-x="-240" data-y="-125" data-z="-800">
-    </div>
-    <div id="users2" class="step" data-x="-240" data-y="-50" data-z="-800">
-    </div>
-    <div id="users3" class="step" data-x="-240" data-y="25" data-z="-800">
-    </div>
-    <div id="users4" class="step" data-x="-240" data-y="100" data-z="-800">
-    </div>
-    <div id="users5" class="step" data-x="-240" data-y="175" data-z="-800">
-    </div>
-    <div id="users-to-experts" class="step" data-x="0" data-y="0" data-z="0" data-autoplay="1">
-    </div>
-    <div id="experts1" class="step" data-x="90" data-y="-125" data-z="-800">
-    </div>
-    <div id="experts2" class="step" data-x="90" data-y="-50" data-z="-800">
-    </div>
-    <div id="experts3" class="step" data-x="90" data-y="25" data-z="-800">
-    </div>
-    <div id="experts4" class="step" data-x="90" data-y="100" data-z="-800">
-    </div>
-    <div id="experts5" class="step" data-x="90" data-y="175" data-z="-800">
+      <div class="columns">
+          <div>
+            <h3>Non-experts</h3>
+            <ol>
+              <li id="result1" class="hidden" >Use antivirus software</li>
+              <li id="result2" class="hidden" >Use strong passwords</li>
+              <li id="result3" class="hidden" >Change passwords frequently</li>
+              <li id="result4" class="hidden" >Only visit websites they know</li>
+              <li id="result5" class="hidden" >Don't share personal information</li>
+            </ol>
+          </div>
+          <div>
+            <h3>Experts</h3>
+            <ol>
+              <li id="result6" class="hidden">Install software updates</li>
+              <li id="result7" class="hidden">Use unique passwords</li>
+              <li id="result8" class="hidden">Use two-factor authentication</li>
+              <li id="result9" class="hidden">Use strong passwords</li>
+              <li id="result0" class="hidden">Use a password manager</li>
+            </ol>
+          </div>
+      </div>
     </div>
     <div id="rules1" class="step" data-x="1500" data-y="0" data-z="0">
       <h1>Expert Rules</h1>
@@ -64,6 +62,15 @@
 
 <script src="js/impress.js"></script>
 <script>impress().init();</script>
+
+<script>
+  function handleKeyUp(e){
+    console.log(`Pressed ${e.key}`)
+    const resultEl = document.getElementById(`result${e.key}`)
+    resultEl.classList.toggle('hidden')
+  }
+  document.addEventListener('keyup', handleKeyUp)
+</script>
 
 </body>
 </html>
