@@ -159,29 +159,6 @@ a:focus {
 }
 
 /*
-    ... and we enhance the styles for impress.js.
-
-    Basically we remove the margin and make inactive steps a little bit transparent.
-*/
-.impress-enabled .step {
-    margin: 0;
-    opacity: 0.3;
-
-    -webkit-transition: opacity 1s;
-    -moz-transition:    opacity 1s;
-    -ms-transition:     opacity 1s;
-    -o-transition:      opacity 1s;
-    transition:         opacity 1s;
-}
-
-.impress-enabled .step.active { opacity: 1 }
-
-.impress-on-overview .step {
-    opacity: 1;
-    cursor: pointer;
-}
-
-/*
     In fact, we can hide the mouse cursor itself too, when mouse isn't used.
 */
 body.impress-mouse-timeout {
