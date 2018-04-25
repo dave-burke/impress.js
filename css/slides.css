@@ -175,7 +175,12 @@ h3 {
 .card {
 	margin-left: 1em;
 	margin-bottom: 1em;
-	background-color: blue;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#5eb6f7+68,134ba7+100 */
+	background: #5eb6f7; /* Old browsers */
+	background: -moz-linear-gradient(top, #5eb6f7 68%, #134ba7 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #5eb6f7 68%,#134ba7 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #5eb6f7 68%,#134ba7 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5eb6f7', endColorstr='#134ba7',GradientType=0 ); /* IE6-9 */
 	border: 5px double white;
 	color: white;
 	font-size: 50%;
@@ -189,7 +194,13 @@ h3 {
 	flex-grow: 1;
 }
 .card .percent {
-	background-color: deepskyblue;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#3d6fd1+45,00378f+100 */
+	background: #3d6fd1; /* Old browsers */
+	background: -moz-linear-gradient(top, #3d6fd1 45%, #00378f 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #3d6fd1 45%,#00378f 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #3d6fd1 45%,#00378f 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3d6fd1', endColorstr='#00378f',GradientType=0 ); /* IE6-9 */
+	border: 3px inset white;
 	width: 2em;
 	text-align: center;
 }
