@@ -119,7 +119,11 @@
       }
       resultEl.classList.toggle('hidden')
     } else if(e.key == 'x'){
-        new Audio('ff-strike.wav').play();
+      new Audio('ff-strike.wav').play();
+    } else if(e.key == 'h'){
+      document.querySelectorAll('.card').forEach(e => e.classList.add('hidden'))
+    } else if(e.key == 'u'){
+      document.querySelectorAll('.card').forEach(e => e.classList.remove('hidden'))
     }
   }
   document.addEventListener('keyup', handleKeyUp)
