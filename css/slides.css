@@ -64,7 +64,7 @@ body {
     background: rgb(215, 215, 215);
     /*background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(rgb(240, 240, 240)), to(rgb(190, 190, 190)));*/
     /*background: -webkit-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));*/
-    background:    -moz-radial-gradient(rgb(150, 0, 150), rgb(128, 0, 128));
+    background:    -moz-radial-gradient(rgb(0, 82, 119), rgb(6, 126, 187));
     /*background:     -ms-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));*/
     /*background:      -o-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));*/
     /*background:         radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));*/
@@ -164,31 +164,38 @@ body.impress-mouse-timeout {
 }
 
 .columns {
+	background-color: black;
+	border: 5px solid gold;
+	border-radius: 10px;
 	display: flex;
 }
 h3 {
+	text-align: center;
 	font-weight: bold;
 }
 .card {
-	margin: 0.5em;
+	margin-left: 1em;
+	margin-bottom: 1em;
 	background-color: blue;
-	border: 5px solid white;
+	border: 5px double white;
 	color: white;
 	font-size: 50%;
 }
-.card .cardContents {
-	padding: 0.5em;
+.card .contents {
+	padding: 0;
 	display: flex;
 }
 .card .text {
+	margin-left: 0.5em;
 	flex-grow: 1;
 }
 .card .percent {
+	background-color: deepskyblue;
 	width: 2em;
 	text-align: center;
 }
 
-.card.hidden > div {
+.card.hidden .contents {
 	visibility: hidden;
 }
 
