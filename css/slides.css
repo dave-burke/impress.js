@@ -58,7 +58,7 @@ table {
     want to leave anybody behind.
 */
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: sans-serif;
     min-height: 740px;
 
     background: rgb(215, 215, 215);
@@ -168,13 +168,13 @@ body.impress-mouse-timeout {
 	border: 5px solid gold;
 	border-radius: 10px;
 	display: flex;
+	justify-content: space-around;
 }
 h3 {
 	text-align: center;
 	font-weight: bold;
 }
 .card {
-	margin-left: 1em;
 	margin-bottom: 1em;
 	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#5eb6f7+68,134ba7+100 */
 	background: #5eb6f7; /* Old browsers */
