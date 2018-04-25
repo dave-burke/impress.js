@@ -152,6 +152,7 @@ a:focus {
     box-sizing:         border-box;
 
     font-size: 48px;
+    text-align: center;
     line-height: 1.5;
 }
 
@@ -183,6 +184,7 @@ h3 {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5eb6f7', endColorstr='#134ba7',GradientType=0 ); /* IE6-9 */
 	border: 5px double white;
 	color: white;
+	text-align: left;
 	font-size: 50%;
 }
 .card .contents {
