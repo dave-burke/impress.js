@@ -114,7 +114,12 @@
     console.log(`Pressed ${e.key}`)
     const resultEl = document.getElementById(`result${e.key}`)
     if(resultEl){
+      if(resultEl.classList.contains('hidden')){
+        new Audio('ff-clang.wav').play();
+      }
       resultEl.classList.toggle('hidden')
+    } else if(e.key == 'x'){
+        new Audio('ff-strike.wav').play();
     }
   }
   document.addEventListener('keyup', handleKeyUp)
