@@ -24,6 +24,7 @@
 
 <div id="impress">
   <div id="main" class="step" data-x="0" data-y="0">
+    <div id="x" class="hidden">x</div>
     <div class="columns">
       <div>
         <h3>Non-experts</h3>
@@ -117,11 +118,13 @@
         new Audio('ff-clang.wav').play();
       }
       resultEl.classList.toggle('hidden')
-    } else if(e.key == 'x'){
+    } else if(e.key === 'x'){
       new Audio('ff-strike.wav').play();
-    } else if(e.key == 'h'){
+      document.getElementById('x').classList.remove('hidden');
+      window.setTimeout(() => document.getElementById('x').classList.add('hidden'), 1500)
+    } else if(e.key === 'h'){
       document.querySelectorAll('.card').forEach(e => e.classList.add('hidden'))
-    } else if(e.key == 'u'){
+    } else if(e.key === 'u'){
       document.querySelectorAll('.card').forEach(e => e.classList.remove('hidden'))
     }
   }

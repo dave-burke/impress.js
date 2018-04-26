@@ -163,6 +163,19 @@ body.impress-mouse-timeout {
     cursor: none;
 }
 
+#x {
+	position: fixed;
+	top: 0%;
+	left: 44%;
+	color: red;
+	font-size: 500%;
+	font-weight: bold;
+	text-align: center;
+}
+#x.hidden {
+	visibility: hidden;
+}
+
 .columns {
 	background-color: black;
 	border: 5px solid gold;
