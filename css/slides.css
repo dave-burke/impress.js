@@ -230,17 +230,29 @@ h3 {
 }
 
 #main .columns {
-	visibility: hidden;
+    opacity: 0;
+
+    -webkit-transition: opacity 1s;
+    -moz-transition:    opacity 1s;
+    -ms-transition:     opacity 1s;
+    -o-transition:      opacity 1s;
+    transition:         opacity 1s;
 }
 #main.present .columns {
-	visibility: visible;
+	opacity: 1;
 }
 
 #rules1 {
-	visibility: hidden;
+    opacity: 0;
+
+    -webkit-transition: opacity 1s;
+    -moz-transition:    opacity 1s;
+    -ms-transition:     opacity 1s;
+    -o-transition:      opacity 1s;
+    transition:         opacity 1s;
 }
 #rules1.present {
-	visibility: visible;
+	opacity: 1;
 }
 
 /*
