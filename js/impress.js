@@ -3208,14 +3208,11 @@
                     }
                 } else {
                     switch ( event.keyCode ) {
-                        case 33: // Pg up
                         case 37: // Left
                         case 38: // Up
                                  api.prev( event );
                                  break;
-                        case 9:  // Tab
                         case 32: // Space
-                        case 34: // Pg down
                         case 39: // Right
                         case 40: // Down
                                  api.next( event );
