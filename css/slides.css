@@ -177,6 +177,7 @@ body.impress-mouse-timeout {
 }
 
 .columns {
+	padding-bottom: 0.25em;
 	background-color: black;
 	border: 5px solid gold;
 	border-radius: 10px;
@@ -222,6 +223,10 @@ h3 {
 
 .card.hidden .contents {
 	visibility: hidden;
+}
+
+.rules {
+	text-align: left;
 }
 
 /*
