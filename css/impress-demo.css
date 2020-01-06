@@ -35,9 +35,6 @@ footer, header, hgroup, menu, nav, section {
 body {
     line-height: 1;
 }
-ol, ul {
-    list-style: none;
-}
 blockquote, q {
     quotes: none;
 }
@@ -70,6 +67,21 @@ body {
     background:     -ms-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
     background:      -o-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
     background:         radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+}
+
+h1 {
+    text-align: center;
+    font-size: 120%;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+}
+
+small {
+    font-size: 80%;
+}
+
+li {
+    margin-bottom: 0.25em;
 }
 
 /*
@@ -174,7 +186,10 @@ a:focus {
     transition:         opacity 1s;
 }
 
-.impress-enabled .step.active { opacity: 1 }
+.impress-enabled .step.active,
+.impress-enabled .step.always-active {
+    opacity: 1
+}
 
 /*
     These 'slide' step styles were heavily inspired by HTML5 Slides:
