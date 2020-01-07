@@ -148,6 +148,14 @@ a:focus {
     display: none;
 }
 
+#tree {
+    z-index: -1;
+}
+
+#tree.active {
+    z-index: 0;
+}
+
 /*
     Now let's style the presentation steps.
 
