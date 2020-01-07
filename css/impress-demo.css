@@ -81,6 +81,10 @@ small {
     font-size: 80%;
 }
 
+cite {
+    font-size: 50%;
+}
+
 li {
     margin-bottom: 0.25em;
 }
