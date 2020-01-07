@@ -33,46 +33,59 @@
 
   <div id="hobby" class="step slide" data-x="-1500" data-y="0" data-rotate="180">
     <q>80% of developers write code as a hobby</q>
-    <canvas id="myChart" width="400" height="150"></canvas>
-    <cite>https://insights.stackoverflow.com/survey/2019#developer-profile-_-coding-as-a-hobby</cite>
+    <canvas id="hobbyChart" width="400" height="150"></canvas>
   </div>
   <script>
-  var ctx = document.getElementById('myChart');
-  var myChart = new Chart(ctx, {
-      type: 'bar',
-      data: {
-          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-          datasets: [{
-              label: '# of Votes',
-              data: [12, 19, 3, 5, 2, 3],
-              backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)',
-                  'rgba(54, 162, 235, 0.2)',
-                  'rgba(255, 206, 86, 0.2)',
-                  'rgba(75, 192, 192, 0.2)',
-                  'rgba(153, 102, 255, 0.2)',
-                  'rgba(255, 159, 64, 0.2)'
-              ],
-              borderColor: [
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)'
-              ],
-              borderWidth: 1
-          }]
-      },
-      options: {
-          scales: {
-              yAxes: [{
-                  ticks: {
-                      beginAtZero: true
-                  }
-              }]
-          }
-      }
+  let hobbyChart;
+  const impressElem = document.getElementById('impress');
+  impressElem.addEventListener('impress:stepenter', (e) => {
+    const currentStep = e.target;
+    if(currentStep.id === 'hobby') {
+      console.log('creating chart');
+      const ctx = document.getElementById('hobbyChart');
+      hobbyChart = new Chart(ctx, {
+        type: 'horizontalBar',
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+            title: {
+              display: true,
+              position: 'bottom',
+              text: 'https://insights.stackoverflow.com/survey/2019#developer-profile-_-coding-as-a-hobby',
+            },
+            legend: {
+              display: false,
+            },
+        },
+        data: {
+            labels: ['Yes', 'No'],
+            datasets: [{
+                data: [80.2, 19.8],
+                backgroundColor: [
+                    '#8bbdfb',
+                    '#8bbdfb',
+                ],
+                borderColor: [
+                    '#5aa2f9',
+                    '#5aa2f9',
+                ],
+                borderWidth: 1
+            }]
+        },
+      });
+    }
+  });
+  impressElem.addEventListener('impress:stepleave', (e) => {
+    const currentStep = e.target;
+    if(currentStep.id === 'hobby') {
+      console.log('destroying chart');
+      hobbyChart.destroy();
+    }
   });
   </script>
 
