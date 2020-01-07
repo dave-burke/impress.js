@@ -60,13 +60,14 @@ body {
     font-family: 'PT Sans', sans-serif;
     min-height: 740px;
 
-    background: rgb(215, 215, 215);
-    background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(rgb(240, 240, 240)), to(rgb(190, 190, 190)));
-    background: -webkit-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
-    background:    -moz-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
-    background:     -ms-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
-    background:      -o-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
-    background:         radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+    /*background: rgb(215, 215, 215);*/
+    background: rgb(135, 206, 235);
+    background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(rgb(160, 231, 255)), to(rgb(110, 181, 210)));
+    background: -webkit-radial-gradient(rgb(160, 231, 255), rgb(110, 181, 210));
+    background:    -moz-radial-gradient(rgb(160, 231, 255), rgb(110, 181, 210));
+    background:     -ms-radial-gradient(rgb(160, 231, 255), rgb(110, 181, 210));
+    background:      -o-radial-gradient(rgb(160, 231, 255), rgb(110, 181, 210));
+    background:         radial-gradient(rgb(160, 231, 255), rgb(110, 181, 210));
 }
 
 h1 {
