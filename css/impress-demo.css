@@ -72,13 +72,19 @@ body {
 
 h1 {
     text-align: center;
-    font-size: 120%;
+    font-size: 200%;
     font-weight: bold;
     margin-bottom: 0.5em;
+    text-decoration: underline;
 }
 
 small {
     font-size: 80%;
+}
+
+p {
+    font-size: 150%;
+    line-height: 1.5em;
 }
 
 cite {
