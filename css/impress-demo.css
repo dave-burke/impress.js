@@ -74,7 +74,7 @@ h1 {
     text-align: center;
     font-size: 200%;
     font-weight: bold;
-    margin-bottom: 0.5em;
+    padding-bottom: 1.5em;
     text-decoration: underline;
 }
 
@@ -83,8 +83,14 @@ small {
 }
 
 p {
-    font-size: 150%;
+    font-size: 120%;
     line-height: 1.5em;
+}
+
+li {
+    font-size: 120%;
+    line-height: 1.5em;
+    padding-bottom: 1.5em;
 }
 
 cite {
