@@ -35,6 +35,11 @@ footer, header, hgroup, menu, nav, section {
 body {
     line-height: 1;
 }
+h1 {
+	font-size: 72px;
+	font-weight: bold;
+	text-decoration: underline;
+}
 ol, ul {
     list-style: none;
 }
@@ -339,6 +344,10 @@ a:focus {
 	position: relative;
 	top: -115px;
 	left: 120px;
+}
+
+img.centered {
+	width: 100%;
 }
 
 

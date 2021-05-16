@@ -233,13 +233,13 @@
 	elegant solution.  -->
 	<div id="block-view-prefork" class="step hideable" data-x="4500" data-y="1200" data-scale="4">
 		<div class="simple-chain">
-			<div class="block"><h1>1</h1></div>
+			<div class="block"><h2>1</h2></div>
 			<span class="chain-arrow fa fa-long-arrow-right">&nbsp;</span>
-			<div class="block"><h1>2</h1></div>
+			<div class="block"><h2>2</h2></div>
 			<span class="chain-arrow fa fa-long-arrow-right">&nbsp;</span>
-			<div class="block"><h1>3</h1></div>
+			<div class="block"><h2>3</h2></div>
 			<span class="chain-arrow fa fa-long-arrow-right">&nbsp;</span>
-			<div class="block"><h1>4</h1></div>
+			<div class="block"><h2>4</h2></div>
 		</div>
 	</div>
 	<!-- Whenever there is a fork in the block chain, each computer follows these rules:
@@ -251,14 +251,14 @@
 	<!-- Right now the chains are equal, so each computer works on whatever they heard about first -->
 	<div id="block-view-postfork" class="step" data-x="5600" data-y="1200" data-scale="4">
 		<div id="fork" class="hideable">
-			<div class="block a"><h1 id="block5a">5A</h1></div>
-			<div id="block5b-container" class="block b hideable"><h1 id="block5b">5B</h1></div>
+			<div class="block a"><h2 id="block5a">5A</h2></div>
+			<div id="block5b-container" class="block b hideable"><h2 id="block5b">5B</h2></div>
 		</div>
 	</div>
 	<div id="block-view-postfork2" class="step" data-x="5700" data-y="1200" data-scale="4">
 		<div id="fork-branch" class="hideable">
 			<span class="chain-arrow fa fa-long-arrow-right">&nbsp;</span>
-			<div class="block a2"><h1 id="block6a">6A</h1></div>
+			<div class="block a2"><h2 id="block6a">6A</h2></div>
 		</div>
 	</div>
 	<!-- Eventually, a new block will be created by one group or the other.
@@ -280,31 +280,23 @@
 	</div>
 
 	<div id="ethereum-1" class="step hideInactive" data-x="10000" data-y="1200">
-	  <h1>Ethereum</h1>
-		<div class="equation">
-			<div>Last block's hash</div>
-		</div>
-		<div>+</div>
-		<div class="equation">New transactions</div>
-		<div>+</div>
-		<div class="equation">
-			<div>Solution "nonce"</div>
-		</div>
+	  <h1>Bitcoin</h1>
+		<div><code>Last block's hash</code></div>
+		<div><code>+</code></div>
+		<div><code>New transactions</code></div>
+		<div><code>+</code></div>
+	  <div><code>Solution "nonce"</code></div>
 	</div>
 	<div id="ethereum-2" class="step hideInactive" data-x="10000" data-y="1200">
 	  <h1>Ethereum</h1>
-		<div class="equation">
-			<div>Last block's hash</div>
-		</div>
-		<div>+</div>
-		<div class="equation">New VM state</div>
-		<div>+</div>
-		<div class="equation">
-			<div>Solution "nonce"</div>
-		</div>
+		<div><code>Last block's hash</code></div>
+		<div><code>+</code></div>
+		<div><code>New VM state</code></div>
+		<div><code>+</code></div>
+	  <div><code>Solution "nonce"</code></div>
 	</div>
-	<div id="ethereum-3" class="step hideInactive" data-x="11000" data-y="1200">
-	  <img alt="evm diagram" src="images/evm.png"/>
+	<div id="ethereum-3" class="step hideInactive" data-x="10000" data-y="1250" data-scale="0.2">
+	  <img alt="evm diagram" class="centered" src="images/evm.png"/>
 	</div>
 
 </div>
