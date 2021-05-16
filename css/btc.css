@@ -350,6 +350,11 @@ img.centered {
 	width: 100%;
 }
 
+.eth strong {
+	padding: 0.25em;
+	border: 3px solid black;
+}
+
 
 /*
     And as the last thing there is a workaround for quite strange bug.
