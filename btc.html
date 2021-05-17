@@ -17,6 +17,9 @@
 
 	<link href="css/btc.css" rel="stylesheet" />
 
+	<!-- highlight.js -->
+	<link rel="stylesheet" href="css/highlightjs/stackoverflow-dark.css">
+
 	<link rel="shortcut icon" href="favicon.png" />
 	<link rel="apple-touch-icon" href="apple-touch-icon.png" />
 </head>
@@ -299,15 +302,152 @@
 	  <img alt="evm diagram" class="centered" src="images/evm.png"/>
 	</div>
 
+	<div id="ethereum-4" class="step hideInactive" data-x="11000" data-y="1250">
+	  <div class="code-example">
+      <pre><code class="solidity">
+        // SPDX-License-Identifier: GPL-3.0
+        pragma solidity ^0.8.4;
+        contract Purchase {
+            uint public value;
+            address payable public seller;
+            address payable public buyer;
+
+            enum State { Created, Locked, Release, Inactive }
+            // The state variable has a default value of the first member, `State.created`
+            State public state;
+
+            modifier condition(bool _condition) {
+                require(_condition);
+                _;
+            }
+
+            /// Only the buyer can call this function.
+            error OnlyBuyer();
+            /// Only the seller can call this function.
+            error OnlySeller();
+            /// The function cannot be called at the current state.
+            error InvalidState();
+            /// The provided value has to be even.
+            error ValueNotEven();
+
+            modifier onlyBuyer() {
+                if (msg.sender != buyer)
+                    revert OnlyBuyer();
+                _;
+            }
+
+            modifier onlySeller() {
+                if (msg.sender != seller)
+                    revert OnlySeller();
+                _;
+            }
+
+            modifier inState(State _state) {
+                if (state != _state)
+                    revert InvalidState();
+                _;
+            }
+
+            event Aborted();
+            event PurchaseConfirmed();
+            event ItemReceived();
+            event SellerRefunded();
+
+            // Ensure that `msg.value` is an even number.
+            // Division will truncate if it is an odd number.
+            // Check via multiplication that it wasn't an odd number.
+            constructor() payable {
+                seller = payable(msg.sender);
+                value = msg.value / 2;
+                if ((2 * value) != msg.value)
+                    revert ValueNotEven();
+            }
+
+            /// Abort the purchase and reclaim the ether.
+            /// Can only be called by the seller before
+            /// the contract is locked.
+            function abort()
+                public
+                onlySeller
+                inState(State.Created)
+            {
+                emit Aborted();
+                state = State.Inactive;
+                // We use transfer here directly. It is
+                // reentrancy-safe, because it is the
+                // last call in this function and we
+                // already changed the state.
+                seller.transfer(address(this).balance);
+            }
+
+            /// Confirm the purchase as buyer.
+            /// Transaction has to include `2 * value` ether.
+            /// The ether will be locked until confirmReceived
+            /// is called.
+            function confirmPurchase()
+                public
+                inState(State.Created)
+                condition(msg.value == (2 * value))
+                payable
+            {
+                emit PurchaseConfirmed();
+                buyer = payable(msg.sender);
+                state = State.Locked;
+            }
+
+            /// Confirm that you (the buyer) received the item.
+            /// This will release the locked ether.
+            function confirmReceived()
+                public
+                onlyBuyer
+                inState(State.Locked)
+            {
+                emit ItemReceived();
+                // It is important to change the state first because
+                // otherwise, the contracts called using `send` below
+                // can call in again here.
+                state = State.Release;
+
+                buyer.transfer(value);
+            }
+
+            /// This function refunds the seller, i.e.
+            /// pays back the locked funds of the seller.
+            function refundSeller()
+                public
+                onlySeller
+                inState(State.Release)
+            {
+                emit SellerRefunded();
+                // It is important to change the state first because
+                // otherwise, the contracts called using `send` below
+                // can call in again here.
+                state = State.Inactive;
+
+                seller.transfer(3 * value);
+            }
+        }
+      </code></pre>
+    </div>
+	</div>
+	<div id="ethereum-future" class="step hideInactive" data-x="12000" data-y="1250">
+	  <h1>Consensus Algorithms</h1>
+	  Proof of Work -> Proof of Stake
+	</div>
+
 </div>
 
 <script src="js/cryptofoo/cryptofoo.min.js"></script>
 <script src="js/impress.js"></script>
 <script src="js/btc.js"></script>
+<script src="js/highlight.pack.js"></script>
+<script src="js/highlight-solidity.js"></script>
 <script>
 	var api = impress();
 	api.init();
 	var BTC = btc(api);
+	hljs.registerLanguage('solidity', window.hljsDefineSolidity);
+  hljs.highlightAll();
 </script>
 
 </body>

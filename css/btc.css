@@ -355,6 +355,13 @@ img.centered {
 	border: 3px solid black;
 }
 
+.code-example {
+	text-align: left;
+	font-size: 16px;
+	max-height: 80vh;
+	overflow-y: scroll;
+}
+
 
 /*
     And as the last thing there is a workaround for quite strange bug.
