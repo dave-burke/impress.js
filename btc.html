@@ -34,7 +34,8 @@
 <div id="impress">
 
 	<!-- Historically, when financial transactions were handled with... -->
-	<div class="step overview" data-x="0" data-y="0">
+	<div class="step" data-x="0" data-y="0">
+	  <p><span class="fa fa-btc">&nbsp;</span>lockchain Explained</p>
 	</div>
 
 	<div id="verbose-blockchain" class="hideable">
@@ -302,139 +303,85 @@
 	  <img alt="evm diagram" class="centered" src="images/evm.png"/>
 	</div>
 
-	<div id="ethereum-4" class="step hideInactive" data-x="11000" data-y="1250">
+	<div id="nft-1" class="step hideInactive" data-x="11000" data-y="1250">
 	  <div class="code-example">
       <pre><code class="solidity">
-        // SPDX-License-Identifier: GPL-3.0
-        pragma solidity ^0.8.4;
-        contract Purchase {
-            uint public value;
-            address payable public seller;
-            address payable public buyer;
+pragma solidity ^0.8.0;
 
-            enum State { Created, Locked, Release, Inactive }
-            // The state variable has a default value of the first member, `State.created`
-            State public state;
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
 
-            modifier condition(bool _condition) {
-                require(_condition);
-                _;
-            }
+contract GameItem is ERC721URIStorage {
+    using Counters for Counters.Counter;
+    Counters.Counter private _tokenIds;
 
-            /// Only the buyer can call this function.
-            error OnlyBuyer();
-            /// Only the seller can call this function.
-            error OnlySeller();
-            /// The function cannot be called at the current state.
-            error InvalidState();
-            /// The provided value has to be even.
-            error ValueNotEven();
+    constructor() ERC721("GameItem", "ITM") {}
 
-            modifier onlyBuyer() {
-                if (msg.sender != buyer)
-                    revert OnlyBuyer();
-                _;
-            }
+    function awardItem(address player, string memory tokenURI)
+        public
+        returns (uint256)
+    {
+        _tokenIds.increment();
 
-            modifier onlySeller() {
-                if (msg.sender != seller)
-                    revert OnlySeller();
-                _;
-            }
+        uint256 newItemId = _tokenIds.current();
+        _mint(player, newItemId);
+        _setTokenURI(newItemId, tokenURI);
 
-            modifier inState(State _state) {
-                if (state != _state)
-                    revert InvalidState();
-                _;
-            }
-
-            event Aborted();
-            event PurchaseConfirmed();
-            event ItemReceived();
-            event SellerRefunded();
-
-            // Ensure that `msg.value` is an even number.
-            // Division will truncate if it is an odd number.
-            // Check via multiplication that it wasn't an odd number.
-            constructor() payable {
-                seller = payable(msg.sender);
-                value = msg.value / 2;
-                if ((2 * value) != msg.value)
-                    revert ValueNotEven();
-            }
-
-            /// Abort the purchase and reclaim the ether.
-            /// Can only be called by the seller before
-            /// the contract is locked.
-            function abort()
-                public
-                onlySeller
-                inState(State.Created)
-            {
-                emit Aborted();
-                state = State.Inactive;
-                // We use transfer here directly. It is
-                // reentrancy-safe, because it is the
-                // last call in this function and we
-                // already changed the state.
-                seller.transfer(address(this).balance);
-            }
-
-            /// Confirm the purchase as buyer.
-            /// Transaction has to include `2 * value` ether.
-            /// The ether will be locked until confirmReceived
-            /// is called.
-            function confirmPurchase()
-                public
-                inState(State.Created)
-                condition(msg.value == (2 * value))
-                payable
-            {
-                emit PurchaseConfirmed();
-                buyer = payable(msg.sender);
-                state = State.Locked;
-            }
-
-            /// Confirm that you (the buyer) received the item.
-            /// This will release the locked ether.
-            function confirmReceived()
-                public
-                onlyBuyer
-                inState(State.Locked)
-            {
-                emit ItemReceived();
-                // It is important to change the state first because
-                // otherwise, the contracts called using `send` below
-                // can call in again here.
-                state = State.Release;
-
-                buyer.transfer(value);
-            }
-
-            /// This function refunds the seller, i.e.
-            /// pays back the locked funds of the seller.
-            function refundSeller()
-                public
-                onlySeller
-                inState(State.Release)
-            {
-                emit SellerRefunded();
-                // It is important to change the state first because
-                // otherwise, the contracts called using `send` below
-                // can call in again here.
-                state = State.Inactive;
-
-                seller.transfer(3 * value);
-            }
-        }
+        return newItemId;
+    }
+}
       </code></pre>
     </div>
 	</div>
-	<div id="ethereum-future" class="step hideInactive" data-x="12000" data-y="1250">
-	  <h1>Consensus Algorithms</h1>
-	  Proof of Work -> Proof of Stake
+	<div id="nft-2" class="step hideInactive" data-x="11000" data-y="2250">
+	  <div class="code-example">
+      <pre><code class="shell">
+> gameItem.awardItem(playerAddress, "https://game.example/item-id-8u5h2m.json")
+Transaction successful. Transaction hash: 0x...
+Events emitted:
+ - Transfer(0x0000000000000000000000000000000000000000, playerAddress, 7)
+      </code></pre>
+    </div>
+	  <div class="code-example">
+      <pre><code class="shell">
+> gameItem.ownerOf(7)
+playerAddress
+> gameItem.tokenURI(7)
+"https://game.example/item-id-8u5h2m.json"
+      </code></pre>
+    </div>
+	  <div class="code-example">
+      <pre><code class="json">
+{
+    "name": "Thor's hammer",
+    "description": "Mjölnir, the legendary hammer of the Norse god of thunder.",
+    "image": "https://game.example/item-id-8u5h2m.png",
+    "strength": 20
+}
+      </code></pre>
+    </div>
+  </div>
+	<div id="ipfs-1" class="step hideInactive" data-x="12000" data-y="2250">
+	  <img alt="ipfs" class="centered" src="images/ipfs.png"/>
+  </div>
+	<div id="nft-4" class="step hideInactive" data-x="13000" data-y="2250">
+    <cite>ipfs://QmNeqUFf3WKcXFEHgxFCrf3t8jrxyCkev6LBtRz78Ygq9u/metadata.json</cite>
+	  <div class="code-example">
+      <pre><code class="json">
+{
+  "name":"Stay Free (Edward Snowden, 2021)",
+  "description":"This unique, signed work combines the entirety of a landmark court decision ruling the National Security Agency's mass surveillance violated the law, with the iconic portrait of the whistleblower by Platon (used with permission). It is the only known NFT produced by Snowden.\n\nProduced using open source software.\n\nThis auction is on behalf of Freedom of the Press Foundation.\n\nhttps://www.aclu.org/press-releases/appeals-court-strikes-down-nsa-phone-spying-program-aclu-lawsuit",
+  "image":"ipfs://QmTKdyzYbT9FzAs8mB4HGiLDR7o8maRP34J5iNDFZQqndQ/nft.png"
+}
+      </code></pre>
+    </div>
+    <cite>Owned by @pleasrdao ✨</cite>
+  </div>
+	<div id="nft-5" class="step hideInactive" data-x="14000" data-y="2250">
+    <cite>ipfs://QmTKdyzYbT9FzAs8mB4HGiLDR7o8maRP34J5iNDFZQqndQ/nft.png</cite>
+    <img class="centered" alt="Stay Free (Edward Snowden, 2021)" src="https://ipfs.io/ipfs/QmTKdyzYbT9FzAs8mB4HGiLDR7o8maRP34J5iNDFZQqndQ/nft.png"/>
 	</div>
-
 </div>
 
 <script src="js/cryptofoo/cryptofoo.min.js"></script>

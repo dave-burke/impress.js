@@ -57,6 +57,10 @@ table {
     border-spacing: 0;
 }
 
+cite {
+	font-size: 16px;
+}
+
 /*
     Now here is when interesting things start to appear.
 
@@ -347,7 +351,8 @@ a:focus {
 }
 
 img.centered {
-	width: 100%;
+	max-width: 100%;
+	max-height: 80vh;
 }
 
 .eth strong {
@@ -360,8 +365,8 @@ img.centered {
 	font-size: 16px;
 	max-height: 80vh;
 	overflow-y: scroll;
+	margin-bottom: 1em;
 }
-
 
 /*
     And as the last thing there is a workaround for quite strange bug.
